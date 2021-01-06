@@ -1,0 +1,27 @@
+{
+  "name": "Smart Planner",
+  "authors": [
+    "Amit Sanghani <amits@techuz.com>",
+    "Ray Hunter <rayhunter@torosys.com"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-credit-cards": "^3.1.8",
+    "angular-ui-tinymce": "^0.0.19",
+    "checklist-model": "^1.0.0",
+    "malihu-custom-scrollbar-plugin": "^3.1.5",
+    "ng-dialog": "^1.4.0",
+    "tinymce": "^4.9.2"
+  }
+}

@@ -1,0 +1,162 @@
+ <section class="outer_container padding_b50">
+     <!-- ng-init="getHomepageData()" -->
+
+     <section class="col-2-right-layout">
+         <section class="container clearfix">
+
+             <div ng-if="loading == true" id="loader"></div>
+             <div class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-controller="registerController"
+                 ng-init="register()">
+
+                 <div class="container">
+                     <div ng-include="'templates/site/partials/message_display.html'"></div>
+                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                         <div class="panel-heading">
+                             <h3 class="panel-title">Register</h3>
+                         </div>
+
+                         <div class="panel-body">
+                             <form name="loginForm" class="form-horizontal"
+                                 ng-submit="loginForm.$valid &&register(form)" novalidate>
+
+                                 <!-- FirstName -->
+                                 <div class="form-group">
+                                     <label for="inputFirstName" class="col-lg-2 control-label">First Name</label>
+                                     <div class="col-lg-10">
+                                         <input type="text" name="first_name" ng-model="first_name" class="form-control"
+                                             placeholder="First Name" required>
+                                     </div>
+                                     <label class="col-lg-2 control-label"></label>
+                                     <div ng-show="loginForm.$submitted || loginForm.first_name.$touched"
+                                         class="has-error col-lg-10">
+                                         <span ng-show="loginForm.first_name.$error.required"
+                                             class="help-block has-error">First Name is required.</span>
+                                         <span ng-show="loginForm.first_name.$error.first_name"
+                                             class="help-block has-error">This is not a valid first_name.</span>
+                                     </div>
+                                 </div>
+
+
+                                 <div class="form-group">
+                                     <label for="inputFirstName" class="col-lg-2 control-label">Last Name</label>
+                                     <div class="col-lg-10">
+                                         <input type="text" name="last_name" ng-model="last_name" class="form-control"
+                                             placeholder="Last Name" required>
+                                     </div>
+                                     <label class="col-lg-2 control-label"></label>
+                                     <div ng-show="loginForm.$submitted || loginForm.last_name.$touched"
+                                         class="has-error col-lg-10">
+                                         <span ng-show="loginForm.last_name.$error.required"
+                                             class="help-block has-error">Last Name is required.</span>
+                                         <span ng-show="loginForm.last_name.$error.last_name"
+                                             class="help-block has-error">This is not a valid last_name.</span>
+                                     </div>
+                                 </div>
+
+                                 <div class="form-group">
+                                     <label for="inputFirstName" class="col-lg-2 control-label">Email</label>
+                                     <div class="col-lg-10">
+                                         <input type="email" name="email" ng-model="email" class="form-control"
+                                             placeholder="Email" required>
+                                     </div>
+                                     <label class="col-lg-2 control-label"></label>
+                                     <div ng-show="loginForm.$submitted || loginForm.email.$touched"
+                                         class="has-error col-lg-10">
+                                         <span ng-show="loginForm.email.$error.required"
+                                             class="help-block has-error">Email is required.</span>
+                                         <span ng-show="loginForm.email.$error.email" class="help-block has-error">This
+                                             is not a valid email.</span>
+                                     </div>
+                                 </div>
+
+                                 <!-- Mobile -->
+                                 <div class="form-group">
+                                     <label for="inputEmail" class="col-lg-2 control-label">Mobile</label>
+                                     <div class="col-lg-10">
+                                         <input type="text" name="mobile" ng-model="mobile" class="form-control"
+                                             placeholder="Mobile" required>
+                                     </div>
+                                     <label class="col-lg-2 control-label"></label>
+                                     <div ng-show="loginForm.$submitted || loginForm.mobile.$touched"
+                                         class="has-error col-lg-10">
+                                         <span ng-show="loginForm.mobile.$error.required"
+                                             class="help-block has-error">Mobile is required.</span>
+                                         <span ng-show="loginForm.mobile.$error.mobile"
+                                             class="help-block has-error">This is not a valid mobile.</span>
+                                     </div>
+                                 </div>
+
+                                 <div class="form-group">
+                                     <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+                                     <div class="col-lg-10">
+                                         <input type="password" name="password" ng-model="password" class="form-control"
+                                             id="inputPassword" placeholder="Password" required>
+                                     </div>
+
+                                     <label class="col-lg-2 control-label"></label>
+                                     <div ng-show="loginForm.$submitted || loginForm.password.$touched"
+                                         class="has-error col-lg-10">
+                                         <span ng-show="loginForm.password.$error.required"
+                                             class="help-block has-error">Password is required.</span>
+                                         <span ng-show="loginForm.password.$error.password"
+                                             class="help-block has-error">This is not a valid password.</span>
+                                     </div>
+                                 </div>
+
+                                 <div class="form-group">
+                                     <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+                                     <div class="col-lg-10">
+                                         <input type="password" name="confirm_password" ng-model="confirm_password"
+                                             class="form-control" id="inputPassword" placeholder=" Re-Type Password"
+                                             required>
+                                     </div>
+
+                                     <label class="col-lg-2 control-label"></label>
+                                     <div ng-show="loginForm.$submitted || loginForm.confirm_password.$touched"
+                                         class="has-error col-lg-10">
+                                         <span ng-show="loginForm.confirm_password.$error.required"
+                                             class="help-block has-error">Confirm Password is required.</span>
+                                         <span ng-show="loginForm.confirm_password.$error.confirm_password"
+                                             class="help-block has-error">This is not a valid confirm_password.</span>
+                                         <span
+                                             ng-show="(loginForm.password.$dirty && loginForm.confirm_password.$dirty) && (password != confirm_password)"
+                                             class="help-block has-error">Password Mismatched</span>
+                                     </div>
+                                 </div>
+
+                                 <div class="form-group">
+                                     <div class="col-lg-10 col-lg-offset-2">
+                                         <input type="hidden" ng-model="authFormToken._token">
+                                         <a class="btn btn-default" href="/">Cancel</a>
+                                         <button type="submit" class="btn btn-primary">Submit</button>
+                                     </div>
+                                 </div>
+
+                             </form>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+
+             <script>
+                 setTimeout( function () {
+                     $( "#homeBanner" ).owlCarousel( {
+                         navigation: false,
+                         items: 1,
+                         autoPlay: true,
+                     } );
+                 }, 300 );
+
+                 setTimeout( function () {
+                     $( "#newArrivals" ).owlCarousel( {
+                         navigation: false, // Show next and prev buttons
+                         items: 3,
+                         autoPlay: false,
+                     } );
+
+                 }, 1000 );
+             </script>
+
+         </section>
+     </section>
+ </section>

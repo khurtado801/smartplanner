@@ -1,0 +1,51 @@
+<div ng-include="'public/app/templates/site/partials/header.html'"></div>
+<section ng-controller="outlineController">
+    <div class="container">
+        <div class="guid-work">
+            <div class="col-xs-12 col-sm-6 col-md-5">
+                <div class="ELA_literature">
+                    <ul class="clearfix">
+                        <li>{{lesson_data.grade_name}}</li>
+                        <li>{{lesson_data.subject_name}}</li>
+                        <li>{{lesson_data.theme_name}}</li>
+                    </ul>
+                    <h5>{{lesson_data.unit_title}}</h5>
+                </div>
+            </div>
+            <div ng-include="'public/app/templates/site/partials/menu.html'"></div>
+            <div class="col-xs-12 col-sm-6 col-md-12">
+                <form action="LessonUser/createTempPdfData" method="GET" class="result-title">
+                    <input type="hidden" name="lesson_id" value="{{lesson_data.last_lession_id}}">
+                    <input type="submit" class="save_button" value="Download PDF">
+                </form>
+                <div class="editormain-container">
+                    <div id="preview_html" ng-controller="modificationController" ng-init="getPreview()">
+                        <div class="preview-page">
+                            <div class="editordesc">
+                                <div class="col-md-5">
+                                    <h3>Grade : {{lesson_data.grade_name}}</h3>
+                                </div>
+                                <div class="col-md-7">
+                                    <h3>Subject : {{lesson_data.subject_name}}</h3>
+                                </div>
+                                <div class="col-md-5">
+                                    <h3>Theme : {{lesson_data.theme_name}}</h3>
+                                </div>
+                                <div class="col-md-7">
+                                    <h3>Unit Title & Teacher Name : {{lesson_data.unit_title}}</h3>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="lession-complete">
+                                        <div class="editor_description" ng-bind-html="trustAsHtml(lesson_modification)">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div ng-include="'public/app/templates/site/partials/footer.html'"></div>

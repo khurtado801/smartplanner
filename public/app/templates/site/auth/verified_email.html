@@ -1,0 +1,51 @@
+<div ng-include="'public/app/templates/site/partials/header.html'"></div>
+<div ng-include="'public/app/templates/site/partials/header_navigantion.html'"></div>
+<div ng-include="'public/app/templates/site/partials/message_display.html'"></div> 
+ 
+<div class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-controller="authController" ng-init="getFormToken()" >
+	<div class="container">
+	 
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"  ng-init="">
+			<div class="panel-heading">
+				<h3 class="panel-title"><b>Verify you email</b></h3>
+			</div>
+			<div class="panel-body" ng-controller="loginController">
+				<form name="loginForm" class="form-horizontal" ng-submit="loginForm.$valid &&login(form)" novalidate>
+					<div class="form-group">
+						<label for="inputEmail" class="col-lg-2 control-label">Email</label>
+						<div class="col-lg-10">
+							<input type="email" name="email" ng-model="email" class="form-control" placeholder="Email Id" required>
+						</div>
+						<label class="col-lg-2 control-label"></label>
+						<div ng-show="loginForm.$submitted || loginForm.mobile.$touched" class="has-error col-lg-10">
+							<span ng-show="loginForm.mobile.$error.required" class="help-block has-error">Email is required.</span>
+							<span ng-show="loginForm.mobile.$error.email" class="help-block has-error">This is not a valid email.</span>
+							
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputPassword"  class="col-lg-2 control-label">Password</label>
+						<div class="col-lg-10">
+							<input type="password" name="password" ng-model="password" class="form-control" id="inputPassword" placeholder="Password" required>
+						</div>
+						<label class="col-lg-2 control-label"></label>
+						<div ng-show="loginForm.$submitted || loginForm.password.$touched" class="has-error col-lg-10">
+							<span ng-show="loginForm.password.$error.required" class="help-block has-error">Password is required.</span>
+							<span ng-show="loginForm.password.$error.password" class="help-block has-error">This is not a valid password.</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-lg-10 col-lg-offset-2">
+							<input type="hidden" ng-model="authFormToken._token" >
+							<a class="btn btn-default" href="/">Cancel</a>
+							<button type="submit" class="btn btn-primary">Submit</button>
+							<span style="float:right;">
+								<a href="/forgot">I forgot my password</a>
+							</span>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+<div ng-include="'public/app/templates/site/partials/footer.html'"></div>

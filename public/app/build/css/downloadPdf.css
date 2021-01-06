@@ -1,0 +1,152 @@
+/******************************************************************
+// CSS Reset
+*******************************************************************/
+@font-face {
+    font-family: 'Norwester';
+    src: url('../../build/fonts/norwester.ttf') format('truetype');
+  }
+  
+  @font-face {
+    font-family: 'Montserrat-Regular';
+    src: url('../../build/fonts/Montserrat-Regular.ttf') format('truetype');
+  }
+  
+  @font-face {
+    font-family: 'BebasNeue';
+    src: url('../../build/fonts/BebasNeue.ttf') format('truetype');
+  }
+  
+  
+  li {
+    list-style: none;
+  }
+  
+  a {
+    color: #1e1e1d;
+    text-decoration: none;
+    /*    transition: all 0.3s ease-in-out; -moz-transition: all 0.3s ease-in-out; -ms-transition: all 0.3s ease-in-out; -o-transition: all 0.3s ease-in-out; -webkit-transition: all 0.3s ease-in-out;*/
+    font-size: 16px;
+    line-height: 26px;
+  }
+  
+  a:hover,
+  a:focus {
+    text-decoration: none;
+    outline: none;
+  }
+  
+  hr {
+    clear: both;
+    border: 1px solid #1e1e1d;
+  }
+  
+  p {
+    color: #1e1e1d;
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  
+  h1 {
+    color: #1e1e1d;
+    font-family: "Norwester", sans-serif;
+  }
+  
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #1e1e1d;
+    font-family: "BebasNeue", sans-serif;
+  }
+  
+  /*********************** Selection ********/
+  ::-moz-selection {
+    color: #fff;
+    background: #00c7c9;
+    text-shadow: none;
+  }
+  
+  ::-ms-selection {
+    color: #fff;
+    background: #00c7c9;
+    text-shadow: none;
+  }
+  
+  ::selection {
+    color: #fff;
+    background: #00c7c9;
+    text-shadow: none;
+  }
+  
+  /*********************** Placeholder ********/
+  ::-webkit-input-placeholder {
+    color: #cacccc;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  
+  ::-moz-placeholder {
+    color: #cacccc;
+    font-size: 20px;
+    font-weight: 400;
+  }
+  
+  ::-ms-input-placeholder {
+    color: #cacccc;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  
+  ::-ms-input-placeholder {
+    color: #cacccc;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  
+  /******************************************************************
+  // Start
+  *******************************************************************/
+  body {
+    background-color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    /*font-family: 'Unica One', cursive;*/
+    -moz-font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    font-weight: 400;
+    /* padding-top: 70px !important; */
+    color: #1e1e1d;
+    /* margin:50px 0;  */
+    padding:0;
+  }
+  
+  html,
+  body {
+    height: 80%;
+  }
+
+
+
+    /************************* custom checkboxes ************************/
+    .white-background {
+        background-color: white;
+        color: black;
+    }
+    
+      .selSequencePartHeader {
+          background-color: #375E97;
+          color: white;
+      }
+    
+      .selSequencePartBackground {
+          background-color: rgba(207, 209, 212, 0.5);
+      }
+
+
+      td {
+        padding: 5px;
+
+      }

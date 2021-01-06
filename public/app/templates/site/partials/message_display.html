@@ -1,0 +1,25 @@
+<div class="alert-div">
+    <div class="alert alert-success" ng-show="flash.getMessage().type == 'Success' || getMessage.type == 'Success'" >
+      	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      	<strong>{{flash.getMessage().message}}</strong>
+    	<strong>{{getMessage.message}}</strong>
+    </div>
+
+    <div class="alert alert-warning" ng-show="flash.getMessage().type == 'Warning' || getMessage.type == 'Warning'">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <strong>{{flash.getMessage().message}}</strong>
+    	<strong>{{getMessage.message}}</strong>
+    </div>
+
+    <div  id="main_content_wrap" class="outer" >
+        <section id="main_content" class="inner">
+            <div class="section"> 
+                <flash-message duration="5000" show-close="true" on-dismiss="myCallback(flash);">
+    				<strong>{{flash.getMessage().message}}</strong>
+    				<strong>{{getMessage.message}}</strong>
+                </flash-message>             
+            </div> 
+        </section> 
+
+    </div>
+</div>

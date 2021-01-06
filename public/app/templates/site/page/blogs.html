@@ -1,0 +1,24 @@
+<div ng-include="'public/app/templates/site/partials/header.html'"></div> 
+<div ng-app="aboutPaageModule" ng-controller="pageController" ng-init="getAllBlogs()" class="innerContainer"> 
+	<div class="container">
+		<div ng-repeat="blog in allBlogs">	
+			<h3 class="md-title">{{allBlogs.title}}</h3>
+			<div class="">
+			{{blog.id}}
+			</div>
+			<div class="">
+			{{blog.title}}
+			</div>
+			<div class="">
+			{{blog.content}}
+			</div>
+			<div class="">
+			{{blog.postedby}}
+			</div>
+			<div class="">
+			{{blog.created_at}}
+			</div>
+		</div>
+	</div>	
+<div ng-include="'public/app/templates/site/partials/footer.html'"></div>
+	

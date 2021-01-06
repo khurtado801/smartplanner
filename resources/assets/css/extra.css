@@ -1,0 +1,10 @@
+p{
+    margin: 0;
+    height: 33px !important;
+}
+.icon-muted{
+    color: #000;
+}
+.no-margin{
+    margin: 0 !important;
+}

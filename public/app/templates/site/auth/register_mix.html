@@ -1,0 +1,251 @@
+ 
+
+<div class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12"   ng-controller="authController" ng-init="getFormToken()" >  
+
+	<div class="container" ng-controller="registerController">
+	
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+			<div class="panel-heading">
+				<h3 class="panel-title">Register</h3>
+			</div>
+
+			<div class="panel-body" >
+
+			<form name="userForm">
+		        <md-input-container flex> 
+		          <label>Old Password</label> 
+		          <input type="password" name="oldPassword" ng-model="oldPassword" required>
+		          <div ng-messages="userForm.oldPassword.$error">
+		              <div ng-message="required">This is required.</div>
+		           </div>
+		        </md-input-container>
+		        <md-input-container flex> 
+		          <label>New Password</label> 
+		          <input type="password" name="newPassword" ng-model="newPassword" required un-matcher="{{oldPassword}}">
+		          <div ng-messages="userForm.newPassword.$error">
+		              <div ng-message="required">This is required.</div>
+		              <div ng-message="unMatcher">New Password cannot be same as Old Password.</div>
+		           </div>
+		        </md-input-container>
+		        <md-input-container flex> 
+		          <label>Confirm Password</label> 
+		          <input type="password" name="confirmPassword" ng-model="confirmPassword" required matcher="{{oldPassword}}">
+		          <div ng-messages="userForm.confirmPassword.$error">
+		              <div ng-message="required">This is required.</div>
+		              <div ng-message="matcher">Confirm Password should be same as old Password.</div>
+		           </div>
+		        </md-input-container>
+		        <md-button class="md-raised md-primary" ng-disabled="userForm.$invalid">Sumbit</md-button>
+		    </form>
+
+				
+				    <form name="loginForms" ng-submit="loginForms.$valid &&register(form)"> 
+				    	<md-input-container class="md-block">
+				        <label>First name</label>
+				        <input required type="type" name="firstname" ng-model="firstname"
+				               minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+				        <div ng-messages="loginForms.firstname.$error" role="alert">
+
+				         	<div ng-message-exp="['required']">
+				            	This is required
+				          	</div> 
+				          
+				        </div>
+				      	</md-input-container>
+
+				      	<md-input-container class="md-block">
+				        <label>Last name</label>
+				        <input required type="lastname" name="lastname" ng-model="lastname"
+				               minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+				        <div ng-messages="loginForms.lastname.$error" role="alert">
+
+				         	<div ng-message-exp="['required']">
+				            	This is required
+				          	</div> 
+				          
+				        </div>
+				      	</md-input-container>
+
+				      	<md-input-container class="md-block">
+				        <label>Email</label>
+				        <input required type="email" name="email" ng-model="email"
+				               minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+				        <div ng-messages="loginForms.email.$error" role="alert">
+
+				         	<div ng-message-exp="['required', 'minlength', 'maxlength','pattern']">
+				            	Your email must be between 10 and 100 characters long and look like an e-mail address.
+				          	</div> 
+				          
+				        </div>
+				      	</md-input-container>
+
+
+						<md-input-container class="md-block">
+							<label>Password</label>
+							<input type="password" md-maxlength="30" required md-no-asterisk name="password" ng-model="password">
+							<div ng-messages="loginForms.$submitted || loginForms.password.$touched" class="has-error col-lg-10">
+								<span ng-message="loginForms.password.$error.required" class="help-block has-error">Password is required.</span>
+								<span ng-message="loginForms.password.$error.password" class="help-block has-error">This is not a valid password.</span>
+							</div>
+						</md-input-container>
+
+						<!-- <md-input-container class="md-block">
+				        <label>Confirm Password</label>
+				        <input type="password" md-maxlength="30" required md-no-asterisk name="confirm_password" ng-model="confirm_password" use-form-error="isNotSame" use-error-expression="password && confirm_password && password!=confirm_password">
+
+				        	<div ng-show="loginForm.$error.isNotSame">Passwords Do Not Match!</div>
+					      	<div ng-messages="loginForm.confirm_password.$error">
+					        	<div ng-message="isNotSame">
+					        	  Passwords Do Not Match (from ng-message)!
+					        	</div>
+					      	</div>
+				      	</md-input-container> -->
+
+				      	 <md-input-container class="md-block"> 
+				          <label>Confirm Password</label> 
+				          <input type="password" name="confirmPassword" ng-model="confirmPassword" required matcher="{{password}}">
+				          <div ng-messages="loginForm.confirmPassword.$error">
+				              <div ng-message="required">This is required.</div>
+				              <div ng-message="matcher">Confirm Password should be same as old Password.</div>
+				           </div>
+				        </md-input-container>
+
+				      	
+				      	<!-- <div class="form-group">
+							<label for="inputPassword"  class="col-lg-2 control-label">Confirm Password</label>
+							<div class="col-lg-10">
+								<input type="password" name="confirm_password" ng-model="confirm_password" class="form-control" id="inputPassword" placeholder=" Re-Type Password" required  >
+							</div>
+
+							<label class="col-lg-2 control-label"></label>
+							<div ng-show="loginForm.$submitted || loginForm.confirm_password.$touched" class="has-error col-lg-10" >
+								<span ng-show="loginForm.confirm_password.$error.required" class="help-block has-error">Confirm Password is required.</span>
+								<span ng-show="loginForm.confirm_password.$error.confirm_password" class="help-block has-error">This is not a valid confirm_password.</span>
+								<span ng-show="(loginForm.password.$dirty && loginForm.confirm_password.$dirty) && (password != confirm_password)" class="help-block has-error">Password Mismatched</span>
+							</div>
+
+						</div>   -->
+				      
+				      <div>
+				        <md-button type="submit">Submit</md-button>
+				      </div>
+				      
+				    </form>
+			
+
+				 
+
+
+				<form name="loginForm" class="form-horizontal" ng-submit="loginForm.$valid &&register(form)" novalidate>
+
+					<!-- FirstName -->
+					<div class="form-group">
+						<label for="inputFirstName" class="col-lg-2 control-label">First Name</label>
+						<div class="col-lg-10">
+							<input type="text" name="firstname" ng-model="firstname" class="form-control" placeholder="First Name" required>
+						</div>
+						<label class="col-lg-2 control-label"></label>
+						<div ng-show="loginForm.$submitted || loginForm.firstname.$touched" class="has-error col-lg-10">
+							<span ng-show="loginForm.firstname.$error.required" class="help-block has-error">First Name is required.</span>
+							<span ng-show="loginForm.firstname.$error.firstname" class="help-block has-error">This is not a valid firstname.</span>
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<label for="inputFirstName" class="col-lg-2 control-label">Last Name</label>
+						<div class="col-lg-10">
+							<input type="text" name="lastname" ng-model="lastname" class="form-control" placeholder="Last Name" required>
+						</div>
+						<label class="col-lg-2 control-label"></label>
+						<div ng-show="loginForm.$submitted || loginForm.lastname.$touched" class="has-error col-lg-10">
+							<span ng-show="loginForm.lastname.$error.required" class="help-block has-error">Last Name is required.</span>
+							<span ng-show="loginForm.lastname.$error.lastname" class="help-block has-error">This is not a valid lastname.</span>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="inputFirstName" class="col-lg-2 control-label">Email</label>
+						<div class="col-lg-10">
+							<input type="email" name="email" ng-model="email" class="form-control" placeholder="Email" required>
+						</div>
+						<label class="col-lg-2 control-label"></label>
+						<div ng-show="loginForm.$submitted || loginForm.email.$touched" class="has-error col-lg-10">
+							<span ng-show="loginForm.email.$error.required" class="help-block has-error">Email is required.</span>
+							<span ng-show="loginForm.email.$error.email" class="help-block has-error">This is not a valid email.</span>
+							<span ng-show="loginForm.email.$error.message">{{loginForm.email.$error.message}}</span>
+						</div>
+					</div>
+
+					<!-- Mobile -->
+					<!-- <div class="form-group">
+						<label for="inputEmail" class="col-lg-2 control-label">Mobile</label>
+						<div class="col-lg-10">
+							<input type="text" name="mobile" ng-model="mobile" class="form-control" placeholder="Mobile" required>
+						</div>
+						<label class="col-lg-2 control-label"></label>
+						<div ng-show="loginForm.$submitted || loginForm.mobile.$touched" class="has-error col-lg-10">
+							<span ng-show="loginForm.mobile.$error.required" class="help-block has-error">Mobile is required.</span>
+							<span ng-show="loginForm.mobile.$error.mobile" class="help-block has-error">This is not a valid mobile.</span>
+						</div>
+					</div> -->
+
+					<div class="form-group">
+						<label for="inputPassword" class="col-lg-2 control-label">Password</label>
+						<div class="col-lg-10">
+							<input type="password" name="password" ng-model="password" class="form-control" id="inputPassword" placeholder="Password" required>
+						</div>
+
+						<label class="col-lg-2 control-label"></label>
+						<div ng-show="loginForm.$submitted || loginForm.password.$touched" class="has-error col-lg-10">
+							<span ng-show="loginForm.password.$error.required" class="help-block has-error">Password is required.</span>
+							<span ng-show="loginForm.password.$error.password" class="help-block has-error">This is not a valid password.</span>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="inputPassword"  class="col-lg-2 control-label">Confirm Password</label>
+						<div class="col-lg-10">
+							<input type="password" name="confirm_password" ng-model="confirm_password" class="form-control" id="inputPassword" placeholder=" Re-Type Password" required>
+						</div>
+
+						<label class="col-lg-2 control-label"></label>
+						<div ng-show="loginForm.$submitted || loginForm.confirm_password.$touched" class="has-error col-lg-10">
+							<span ng-show="loginForm.confirm_password.$error.required" class="help-block has-error">Confirm Password is required.</span>
+							<span ng-show="loginForm.confirm_password.$error.confirm_password" class="help-block has-error">This is not a valid confirm_password.</span>
+							<span ng-show="(loginForm.password.$dirty && loginForm.confirm_password.$dirty) && (password != confirm_password)" class="help-block has-error">Password Mismatched</span>
+						</div>
+
+					</div>
+
+					<div class="form-group">
+						<label for="inputPassword"  class="col-lg-2 control-label">Choose Anyone</label>
+						<div class="col-lg-10">
+							  	<input type="radio" name="user_type" ng-model="user_type" value="freelancer" required> Freelancer 
+							  	<input type="radio" name="user_type" ng-model="user_type" value="client" required> Client<br>
+						</div>
+
+						<label class="col-lg-2 control-label"></label>
+						<div ng-show="loginForm.$submitted || loginForm.user_type.$touched" class="has-error col-lg-10">
+							<span ng-show="loginForm.user_type.$error.required" class="help-block has-error">Please Choose one.</span>
+						</div>
+
+					</div>
+
+
+
+					<div class="form-group">
+						<div class="col-lg-10 col-lg-offset-2">
+							<input type="hidden" ng-model="authFormToken._token" >
+							<a class="btn btn-default" href="/">Cancel</a>
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</div>
+
+				</form>
+
+ 
+			</div>
+		</div>
+	</div>
+</div>

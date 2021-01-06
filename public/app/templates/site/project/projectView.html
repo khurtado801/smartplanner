@@ -1,0 +1,105 @@
+<div ng-include="'public/app/templates/site/partials/header.html'"></div>
+
+<section class="innerContainer" ng-controller="freelancerController" ng-init="getProjectDetailsById()" ng-cloak class="md-inline-form" layout="column">
+	
+	<div class="container">		
+			<div ng-if="loading == true" id="loader"></div>
+			<div ng-include="'public/app/templates/site/partials/message_display.html'"></div>
+			<div flex>
+				<!-- {{projectData}} -->
+				<md-toolbar layout="row" class="md-hue-3">
+					<div class="md-toolbar-tools">
+						<span>{{projectData.job_title}}</span>
+					</div>
+				</md-toolbar>
+				
+				<md-content>        				
+					<md-list class="md-accent" flex>	
+						<md-list-item class="md-3-line">
+							<div class="md-list-item-text" layout="column">
+								<h3>Sub Title : {{projectData.job_subtitle}}</h3>
+
+								<label><strong>Project Description</strong></label>
+								<p>{{projectData.job_description}}</p>
+
+								<label><strong>Project Comments</strong></label>
+								<p>{{projectData.job_comments}}</p>
+
+								<label><strong>Project Cost Range</strong></label>
+								<p>{{projectData.job_cost_min}} - {{projectData.job_cost_max}} CHF</p>
+								{{jobSkills}}
+								<label><strong>Project Skills</strong></label>
+								<p>
+									<span ng-repeat="skl in skills">{{skl.skill}}</span>
+								</p>
+
+								<label><strong>Project in Stage</strong></label>
+								<p>{{projectData.job_stage}}</p>
+
+								<label><strong>Project Availble For</strong></label>
+								<p>{{projectData.job_availble_for}}</p>
+
+								<label><strong>Project Category</strong></label>
+								<p>
+									<span ng-repeat="cat in categories">{{cat.name}}</span>
+								</p>
+
+								<label><strong>Project Duration</strong></label>
+								<p>{{projectData.job_stattime}} to {{projectData.job_endtime}}</p>
+								
+								<div ng-if="jobImages.length != ''" >
+									<label><strong>Images</strong></label>
+									<ul>
+										<li>
+											<a href="public/asset/JobDetails/thumb/{{JI}}" ng-repeat="JI in jobImages" target="_blank">
+												<img ng-src="public/asset/JobDetails/thumb/{{JI}}" on-error-src="public/asset/JobDetails/thumb/job_default.jpg 
+												"/>
+											</a>
+										</li>
+									</ul>
+								</div>
+								<div layout-gt-sm="row" ng-if="jobDocuments.length != ''">
+									<label><strong>Atachments</strong></label>
+									<md-button target="_blank"  class="md-primary" href="public/asset/JobDetails/docs/{{JD}}" ng-repeat="JD in jobDocuments">View</md-button>
+								</div>
+
+								<label><strong>Job Posted Date</strong></label>
+								<p>{{projectData.created_at}}</p>
+							</div>	        				
+						</md-list-item>
+						<div class="jumbotron" ng-show="lions">        
+							<form name="userForm" id="userForm" class="form-horizontal" ng-submit="userForm.$valid && userDetailsFreelancer(user)" novalidate>
+								<md-input-container class="md-block">
+									<label>Profile Description</label>
+									<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Profile Description</md-tooltip>
+									<textarea ng-model="user.profile_description" name="profile_description" md-select-on-focus required ></textarea>
+									<div ng-messages="userForm.profile_description.$error" role="alert" multiple>
+										<div ng-message="required" class="my-message">You must have to describe your profile details.</div>
+										
+									</div>
+								</md-input-container>
+
+								<a class="btn btn-default" href="#freelancer/profile/dashboard">Apply Later</a>
+								<md-button ng-disabled="userForm.$invalid" class="md-primary" type="Apply" class="btn btn-primary">Submit</md-button>
+							</form>
+						</div>
+						
+						<div class="pull-right" layout-gt-sm="row" >
+							<md-button class="md-accent md-raised" ng-click="lions = !lions"> Apply </md-button>
+						</div>
+						
+						
+						
+						<div ng-if="ApplyFormToggle == true">
+							
+						</div>
+						<md-divider ></md-divider>
+					</md-list>
+
+
+				</md-content>
+			</section>
+	</div>
+</section>
+<div ng-include="'public/app/templates/site/partials/footer.html'"></div>
+

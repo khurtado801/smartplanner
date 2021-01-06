@@ -1,0 +1,52 @@
+<div ng-include="'public/app/templates/site/partials/header.html'"></div>
+<section>
+    <!--<div class="container" ng-controller="authController" ng-init="getFormToken()">-->
+    <div class="container">
+        <div ng-include="'public/app/templates/site/partials/message_display.html'"></div>
+        <div class="container_login" ng-controller="registerController" ng-init="getAllcountry()">
+            <div class="register-form" ng-controller="userController" ng-init="getMyProfile()">
+                <h2>My Profile</h2>
+                <form name="myprofileForm" ng-submit="myprofileForm.$valid && updateMyProfile(form)" novalidate>
+                    <div class="register-form-inner">
+                        <div class="form-group">
+                            <input type="text" required name="firstname" ng-model="user_profile.firstname"  class="form-control"  placeholder="First name" maxlength="50"/>
+                            <span class="error" ng-show="myprofileForm.firstname.$touched && myprofileForm.firstname.$invalid">First name is required.</span> </div>
+                        <div class="form-group">
+                            <input type="text" required name="lastname" ng-model="user_profile.lastname" class="form-control"  placeholder="Last Name" maxlength="50"/>
+                            <span class="error" ng-show="myprofileForm.lastname.$touched && myprofileForm.lastname.$invalid">Last name is required.</span> </div>
+                        <div class="form-group">
+                            <input type="email" required name="email" ng-model="user_profile.email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" class="form-control" placeholder="Email Address" />
+                            <span class="error" ng-show="myprofileForm.email.$touched && myprofileForm.email.$invalid"> <span ng-show="myprofileForm.email.$error.required">Email is required.</span> <span ng-show="myprofileForm.email.$error.pattern">Invalid email address.</span> </span> </div>
+                        <div class="form-group">
+                            <div class="select-area">
+                                <div class="col-xs-12 col-sm-12 col-md-6">
+                                    <!-- <select name="country" ng-model="user_profile.country" ng-options="country.id as country.name for country in countries" required> -->
+                                    <select name="country1" ng-model="user_profile.country" ng-options="key as value for (key,value) in countries" required>
+                                        <option value="">Country</option>
+                                    </select>
+                                    <!--                                    <span class="error" ng-show="myprofileForm.country.$dirty && myprofileForm.country.$invalid">Please select country.</span>-->
+                                    <span class="error" ng-show="myprofileForm.country.$touched && myprofileForm.country.$invalid"> <span ng-show="myprofileForm.country.$error.required"> Please select country.</span> </span>
+                                </div>
+                            </div>
+                            <div class="phone-number">
+                                <div class="col-xs-12 col-sm-12 col-md-6">
+                                    <input type="text" ng-pattern="/^[0-9]/" required value="" class="form-control" ng-model="user_profile.phone_number" name="phone_number" placeholder="Phone Number" minlength="10" maxlength="16">
+                                    <span class="error" ng-show="myprofileForm.phone_number.$error.pattern">Not a valid number!</span> <span class="error" ng-show="myprofileForm.phone_number.$touched && myprofileForm.phone_number.$error.required">Phone number is required!</span> </div>
+                                <span class="error" ng-show="myprofileForm.phone_number.$error.maxlength">Phone number length must not exceed 16 digits.</span>
+                                <span class="error" ng-show="myprofileForm.phone_number.$error.minlength">Phone number must be minimum 10 digits.</span>
+                            </div>
+                        </div>
+                        <!-- Row close here  -->
+
+                        <div class="submit_panel">
+                            <div class="form-group">
+                                <button type="submit" ng-disabled="myprofileForm.$invalid" class="sub_button">Update Profile</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<div ng-include="'public/app/templates/site/partials/footer.html'"></div>

@@ -1,0 +1,75 @@
+<div ng-include="'public/app/templates/site/partials/header.html'"></div>
+<div ng-include="'public/app/templates/site/partials/header_navigantion.html'"></div>
+<div ng-include="'public/app/templates/site/partials/message_display.html'"></div>
+<section class="wrapper" ng-controller="freelancerController" ng-init="getFreelanceUpdateData()" ng-cloak  class="md-inline-form" layout="column">
+	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">		
+		<section class="col-2-right-layout ng-scope">
+			<section class="container clearfix">
+				<div class="panel-heading">
+					<h3 class="panel-title">Company Details</h3>
+				</div>
+				<div class="form-group">
+				<form name="userForm" id="userForm" class="form-horizontal" ng-submit="userForm.$valid && updateCompany(user)" novalidate>
+					<div layout-gt-sm="row">
+						<md-input-container class="md-block" flex-gt-sm>
+							<input ng-model="user.user_id" name="userId" required type="hidden">
+							<label>Numbers of Employer</label>
+							<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Numbers of Employer</md-tooltip>
+							<input name="zipcode" ng-model="user.company_no_of_employer"
+							required  ng-pattern="/^\d+$/" maxlength="5">
+							<div ng-messages="userForm.company_no_of_employer.$error" role="alert" multiple>
+								<div ng-message="required" class="my-message">You must enter a number.</div>
+								<div ng-message="pattern" class="my-message">That doesn't look like a valid number.
+								</div>
+							</div>
+						</md-input-container>
+
+						<md-input-container class="md-block" flex-gt-sm>
+							<label>Company Type</label>
+							<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Company Type</md-tooltip>
+							<md-select ng-model="user.company_type" name="company_type">
+								<md-option ng-repeat="ctype in ctypes" value="{{ctype}}">
+									{{ctype}}
+								</md-option>
+							</md-select>
+						</md-input-container>
+					</div>
+					
+					<div layout-gt-sm="row">
+						<md-input-container class="md-block" flex-gt-sm>
+							<label>VAT Number</label>
+							<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >VAT Number</md-tooltip>
+							<input ng-model="user.vat_number" name="vat_number">
+						</md-input-container>
+
+						<md-input-container class="md-block" flex-gt-sm>
+							<label>Commercial Register Number</label>
+							<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Commercial Register Number</md-tooltip>
+							<input ng-model="user.commercial_register_number" name="commercial_register_number">
+						</md-input-container>
+					</div>
+					
+					<div layout-gt-sm="row">
+						<md-input-container class="md-block" flex-gt-sm>
+							<label>Company Address</label>
+							<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Company Address</md-tooltip>
+							<input ng-model="user.company_address " name=" company_address ">
+						</md-input-container>
+					</div>
+
+					<div class="form-group">				 
+						<input type="hidden" ng-model="authFormToken._token" >
+						<a class="btn btn-default" href="#freelancer/profile/dashboard">Later</a>
+						<md-button ng-disabled="userForm.$invalid" class="md-primary" type="submit" class="btn btn-primary">Submit</md-button>
+					</div>
+				</form>
+				</div>
+			</div>
+		</section>
+	</section>
+</div>
+</section>
+<div ng-include="'public/app/templates/site/partials/footer.html'"></div>
+
+
+

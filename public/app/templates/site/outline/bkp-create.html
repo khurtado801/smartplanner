@@ -1,0 +1,164 @@
+<div ng-include="'public/app/templates/site/partials/header.html'"></div>
+
+<section ng-controller="outlineController" >
+    <div class="container">
+        <div ng-include="'public/app/templates/site/partials/message_display.html'"></div>
+        <div class="guid-work">
+            <div ng-show="classdiv" class="col-xs-12 col-sm-6 col-md-5">
+                <div class="ELA_literature" >
+                    <ul class="clearfix">
+                        <li>{{lesson_data.grade_name}}</li>
+                        <li>{{lesson_data.subject_name}}</li>
+                        <li>{{lesson_data.theme_name}}</li>
+                    </ul>
+                    <h5>{{lesson_data.unit_title}}</h5>
+
+                    <div id="sortable" class="tab-menu content">
+                        <div ng-include="'public/app/templates/site/lession/select-tab.html'"></div>
+                    </div>
+                </div>        
+            </div>
+            <div ng-show="classdiv" ng-init="getLessonFixedcontent()">
+                <div ng-include="'public/app/templates/site/partials/menu.html'"></div>
+                <div class="col-xs-12 col-sm-6 col-md-7">
+                    <!-- <div class="editormain-container scrollbar-dynamicyy" ng-init="getLessonFixedcontent()" data-jquery-scrollbar="jqueryScrollbarOptions2" >
+                        <div ng-show="emptybxdiv" class="editordesc" >
+                            <div class="result-title">
+                                <h2>No result found</h2>              
+                            </div>
+                            <div class="lession-complete">
+                                <div class="lesson-name">
+                                    <strong>Please add from result tab.</strong>          
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="editordesc" ng-show="summarybox.length" >
+                            <div class="result-title">
+                                <h2>Summary</h2>              
+                            </div>
+                            <div class="lession-complete" ng-repeat="summary in summarybox track by $index">
+                                <div class="lesson-name">
+                                    <strong>{{summary.name}}</strong>          
+                                </div>
+                                <div class="lesson-fulldesc" ng-bind-html="summary.desc">           
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-show="standardbox.length" class="editordesc">
+                            <div class="result-title">
+                                <h2>Standards</h2>              
+                            </div>
+                            <div class="lession-complete" ng-repeat="standard in standardbox track by $index">
+                                <div class="lesson-name">
+                                    <strong>{{standard.name}}</strong>          
+                                </div>
+                                <div class="lesson-fulldesc" ng-bind-html="standard.desc">           
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-show="essentialbox.length" class="editordesc">
+                            <div class="result-title">
+                                <h2>Essential Questions</h2>              
+                            </div>           
+                            <div class="lession-complete" ng-repeat="essential in essentialbox track by $index">
+                                <div class="lesson-name">
+                                    <strong>{{essential.name}}</strong>          
+                                </div>
+                                <div class="lesson-fulldesc" ng-bind-html="essential.desc">           
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-show="core_ideasbox.length" class="editordesc">
+                            <div class="result-title">
+                                <h2>Core Ideas</h2>              
+                            </div>
+                            <div class="lession-complete" ng-repeat="core_ideas in core_ideasbox track by $index">
+                                <div class="lesson-name">
+                                    <strong>{{core_ideas.name}}</strong>          
+                                </div>
+                                <div class="lesson-fulldesc" ng-bind-html="core_ideas.desc">           
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-show="vocabulariesbox.length" class="editordesc">
+                            <div class="result-title">
+                                <h2>Vocabulary</h2>              
+                            </div>
+                            <div class="lession-complete" ng-repeat="vocabularies in vocabulariesbox track by $index">
+                                <div class="lesson-name">
+                                    <strong>{{vocabularies.name}}</strong>          
+                                </div>
+                                <div class="lesson-fulldesc" ng-bind-html="vocabularies.desc">           
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                       -->
+
+                    <div ng-show="emptybxdiv" class="editordesc" >
+                        <div class="result-title">
+                            <h2>No result found</h2>              
+                        </div>
+                        <div class="lession-complete">
+                            <div class="lesson-name">
+                                <strong>Please add from result tab.</strong>          
+                            </div>
+                        </div>
+                    </div>
+
+                   <div ng-show="!emptybxdiv" class="editormain-container scrollbar-dynamicyy" data-jquery-scrollbar="jqueryScrollbarOptions2"  >
+                   <form method="post">
+                        <div class="editor-box">
+                            <h4>Summary</h4>
+                            <textarea ui-tinymce="tinymceOptions" ng-model="editor_summary"></textarea>
+                        </div>
+                        <div class="editor-box">
+                            <h4>Standards</h4>
+                            <textarea ui-tinymce="tinymceOptions" ng-model="editor_standards"></textarea>
+                        </div>
+                        <div class="editor-box">
+                            <h4>Essential Questions</h4>
+                            <textarea ui-tinymce="tinymceOptions" ng-model="editor_essential_questions"></textarea>
+                        </div>
+                        <div class="editor-box">
+                            <h4>Core Ideas</h4>
+                            <textarea ui-tinymce="tinymceOptions" ng-model="editor_core_ideas"></textarea>
+                        </div>
+                        <div class="editor-box">
+                            <h4>Vocabulary</h4>
+                            <textarea ui-tinymce="tinymceOptions" ng-model="editor_vocabulary"></textarea>
+                        </div>
+                    </form> 
+                    </div>
+                 
+                    <div class="external-scroll_y">
+                        <div class="scroll-element_outer">
+                            <div class="scroll-element_size"></div>
+                            <div class="scroll-element_track"></div>
+                            <div class="scroll-bar"></div>
+                        </div>
+                    </div> 
+                    <div class="external-scroll_yy">
+                        <div class="scroll-element_outer">
+                            <div class="scroll-element_size"></div>
+                            <div class="scroll-element_track"></div>
+                            <div class="scroll-bar"></div>
+                        </div>
+                    </div>        
+                    <div class="external-scroll_x">
+                        <div class="scroll-element_outer">
+                            <div class="scroll-element_size"></div>
+                            <div class="scroll-element_track"></div>
+                            <div class="scroll-bar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div ng-include="'public/app/templates/site/partials/footer.html'"></div>

@@ -1,0 +1,69 @@
+<div class="modal-dialog table-responsive" ng-init="getAllSequenceData()">
+    <!-- <div class="modal-header">
+            <h3>Start your lesson sequence by selecting one of Bloom's Taxonomy</h3>
+        </div> -->
+    <form name="form.userForm" ng-submit="submitForm()" novalidate class="vertical-alignment-helper">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th ng-class="[sequenceHeader]">User selected</th>
+                    <!-- <th ng-show={{!blooms.selected}}>No user selected</th> -->
+                    <!-- <th ng-show="!IsVisible">No user selected</th> -->
+                    <th ng-class="[sequenceHeader]">Bloom's Taxonomy Knowledge Base</th>
+                    <th>Activity Name and Description</th>
+                    <th>Delivery</th>
+                    <th>Beyond the Standards</th>
+                    <th>Modifications</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>User completes</td>
+                    <td ng-class="[bloomWebbData]">
+                        <div class="accordion" id="myAccordion">
+                            <div class="form-group custom_checkbox vertical-align-center" >
+                                <div ng-repeat="bloom in blooms">
+                                    <input type="checkbox" ng-disabled="modi_re" id="{{bloom.id}}" value="{{bloom.id}}"
+                                        ng-model="bloom.selected " ng-click="getWebbByBloom(bloom.id, bloom.selected)"
+                                        ng-checked={{bloom.selected}}>
+                                    <label data-parent="#myAccordion" data-toggle="collapse"
+                                        data-target="#collapse{{bloom.id}}" for="{{bloom.id}}"
+                                        uib-popover={{bloom.description}} popover-trigger="'mouseenter'"
+                                        popover-placement="auto"><span>{{bloom.name}}</span>
+                                    </label>
+                                </div>
+                                <div id="collapse{{bloom.id}}" ng-class="checkItem(bloom.id) ? 'in' : 'out' "
+                                    class="left-sub-concept collapse">
+                                    <!-- <div class="sub-concept-1" ng-repeat="webb in bloom.webbs"> -->
+                                    <div class="sub-concept-1" ng-repeat="webb in bloom.webbs">
+                                        <input type="checkbox" ng-disabled="modi_re" ng-model="webb.selected"
+                                            ng-click="toggleBloomSelection(webb.webb_id,webb.selected)"
+                                            id="webb_{{webb.webb_id}}" value="{{webb.webb_id}}"
+                                            ng-checked={{webb.selected}}>
+                                        <label for="webb_{{webb.webb_id}}"
+                                            uib-popover="Webb level {{webb.webb_level}}: {{webb.webb_description}}"
+                                            popover-trigger="'mouseenter'" popover-placement="auto"><span>
+                                                Webb Level: {{webb.webb_level}}</span></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. Qui animated corpse.</td>
+                    <td>Zombie ipsum reversus ab viral inferno, nam rick grimes malum</td>
+                    <td>Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering
+                        animata corpora quaeritis. Summus brains sitÃ¢â‚¬â€¹Ã¢â‚¬â€¹.</td>
+                    <td>Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering
+                        animata corpora quaeritis. Summus brains sitÃ¢â‚¬â€¹Ã¢â‚¬â€¹, morbo vel maleficia? De apocalypsi
+                        gorger
+                        omero
+                        undead survivor dictum.</td>
+                </tr>
+            </tbody>
+        </table>
+        <span>
+            <a ng-click="addEssentialEditor()" class="sequence-add-button" href="javascript:void(0)">DOWNLOAD PDF</a>
+            <a ng-click="cancel()" class="sequence-add-button" href="javascript:void(0)">SAVE</a>
+        </span>
+    </form>
+</div>

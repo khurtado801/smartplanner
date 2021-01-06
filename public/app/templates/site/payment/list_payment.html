@@ -1,0 +1,45 @@
+<div ng-include="'public/app/templates/site/partials/header.html'"></div>
+<section ng-controller="paymentController" ng-init="list_payments()">
+    <div class="container">
+        <div ng-include="'public/app/templates/site/partials/message_display.html'"></div>
+
+        <div class="selection-area">
+<!--        <div class="form-group">
+            <a class="btn btn-primary" href="#/payment">Renew Plan</a>
+        </div>-->
+            <div class="table-menu table table-bordered table-hover table-striped">
+                <div class="table-row">
+                    <div class="table-header">
+                        <div class="tab-header column-1 col-xs-2 col-sm-6 col-md-3">Plan Name</div>
+                        <div class="tab-header column-2 col-xs-2 col-sm-2 col-md-2">Price</div>
+                        <div class="tab-header column-3 col-xs-2 col-sm-2 col-md-2">Duration</div>
+                        <div class="tab-header column-4 col-xs-2 col-sm-2 col-md-4">Subscribe Date</div>
+                        <div class="tab-header column-7 col-xs-1 col-sm-2 col-md-1">Download</div>
+
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="table-body payment-list">
+                        <!--{{payments[0]}}-->
+                        <div ng-show="payments.length != 0" class="table-row" dir-paginate="mypay in payments | itemsPerPage: 10">
+                            <div class="table-edit">
+
+                                <div class="tab-content column-1 col-xs-2 col-sm-6 col-md-3">{{mypay.name}}</div>
+                                <div class="tab-content column-2 col-xs-2 col-sm-6 col-md-2">{{mypay.price}}</div>
+                                <div class="tab-content column-3 col-xs-2 col-sm-6 col-md-2">{{mypay.duration}}</div>
+                                <div class="tab-content column-4 col-xs-2 col-sm-6 col-md-4">{{mypay.created_at}}</div>
+                                
+                                <div class="tab-content column-7 col-xs-2 col-sm-2 col-md-1"><a href="pdf/download/{{mypay.id}}"><i class="fa fa-download"></i></a></div>
+                            </div>
+                        </div>
+                        <dir-pagination-controls></dir-pagination-controls>
+                        <div ng-show="payments.length == 0" class="table-no-data">No payment.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+</script>
+<div ng-include="'public/app/templates/site/partials/footer.html'"></div>

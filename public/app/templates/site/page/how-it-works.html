@@ -1,0 +1,10 @@
+<div ng-include="'public/app/templates/site/partials/header.html'"></div> 
+<div ng-app="aboutPaageModule" ng-controller="pageController" ng-init="getPageDetails(7)" class="innerContainer"> 
+	<div class="container">		
+		<h3 class="md-title">{{pageDetails.title}}</h3>
+		<div class="">
+		{{pageDetails.description}}
+		</div> 
+	</div>	
+<div ng-include="'public/app/templates/site/partials/footer.html'"></div>
+	

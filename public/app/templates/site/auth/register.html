@@ -1,0 +1,120 @@
+<div ng-include="'public/app/templates/site/partials/header.html'"></div>
+<section>
+    <div class="container" ng-controller="authController" ng-init="getFormToken()">
+        <div ng-include="'public/app/templates/site/partials/message_display.html'"></div>
+        <div class="logo">
+            <img src="public/app/build/images/Evolved_Educator_Logo.png" alt="Company Logo" title="Evolved Educator"
+                class="img-responsive center-block" />
+        </div>
+        <div class="container_login" ng-controller="registerController" ng-init="getAllcountry()">
+
+            <div class="register-form">
+                <!-- <h2>Register</h2> -->
+                <form name="userForm" ng-submit="userForm.$valid &&register(form)" novalidate>
+                    <div class="register-form-inner">
+                        <div class="form-group">
+                            <input type="text" required name="firstname" ng-model="firstname" class="form-control"
+                                placeholder="First Name" maxlength="50" />
+                            <span class="error"
+                                ng-show="userForm.firstname.$touched && userForm.firstname.$invalid">First name is
+                                required.</span> </div>
+                        <div class="form-group">
+                            <input type="text" required name="lastname" ng-model="lastname" class="form-control"
+                                placeholder="Last Name" maxlength="50" />
+                            <span class="error" ng-show="userForm.lastname.$touched && userForm.lastname.$invalid">Last
+                                name is required.</span> </div>
+                        <div class="form-group">
+                            <input type="email" required name="email" ng-model="email"
+                                ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" class="form-control"
+                                placeholder="Email Address" />
+                            <span class="error" ng-show="userForm.email.$touched && userForm.email.$invalid"> <span
+                                    ng-show="userForm.email.$error.required">Email is required.</span> <span
+                                    ng-show="userForm.email.$error.pattern">Invalid email address.</span> </span> </div>
+                        <div class="form-group">
+                            <div class="select-area">
+                                <div class="col-xs-12 col-sm-12 col-md-6">
+                                    <select name="country" ng-model="country"
+                                        ng-options="key as value for (key,value) in countries" required>
+                                        <option value="">Country</option>
+                                    </select>
+                                    <!--<span class="error" ng-show="userForm.country.$dirty && userForm.country.$invalid">Please select country.</span>-->
+                                    <span class="error"
+                                        ng-show="userForm.country.$touched && userForm.country.$invalid"> <span
+                                            ng-show="userForm.country.$error.required"> Please select country.</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="phone-number">
+                                <div class="col-xs-12 col-sm-12 col-md-6">
+                                    <input type="text" ng-pattern="/^[0-9]/" value="" class="form-control"
+                                        ng-model="phone_number" name="phone_number" placeholder="Phone Number"
+                                        minlength="10" maxlength="16">
+                                    <span class="error" ng-show="userForm.phone_number.$error.pattern">Not a valid
+                                        number!</span>
+                                    <span class="error"
+                                        ng-show="userForm.phone_number.$touched && userForm.phone_number.$error.required">Phone
+                                        number is required!</span>
+                                    <span class="error" ng-show="userForm.phone_number.$error.maxlength">Phone number
+                                        length must not exceed 16 digits.</span>
+                                    <span class="error" ng-show="userForm.phone_number.$error.minlength">Phone number
+                                        must be minimum 10 digits.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Row close here  -->
+
+                        <div class="form-group">
+                            <input type="password" required name="password" ng-model="password" class="form-control"
+                                ng-maxlength="64" ng-minlength="6" placeholder="Password" />
+                            <span class="error" ng-show="userForm.password.$touched && userForm.password.$invalid">
+                                <span ng-show="userForm.password.$error.required">Password is required.</span>
+                                <span ng-show="userForm.password.$error.maxlength">Password length must not exceed 64
+                                    characters.</span>
+                                <span ng-show="userForm.password.$error.minlength">Password must be minimum 6
+                                    characters.</span>
+                                <!--<span ng-show="userForm.password.$error.matcher">Password must be same as confirm password.</span>-->
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <!-- <input type="password" class="form-control" name="confirmPassword" ng-model="confirmPassword" placeholder="Confirm Password" required > -->
+                            <input type="password" required name="confirmPassword" ng-model="confirmPassword"
+                                class="form-control" placeholder="Confirm Password" valid-password-c="password" />
+                            <span class="error"
+                                ng-show="userForm.confirmPassword.$touched && userForm.confirmPassword.$invalid">
+                                <span ng-show="userForm.confirmPassword.$error.required">Confirm password is
+                                    required.</span>
+                                <span ng-show="userForm.confirmPassword.$error.noMatch">Confirm password must be same as
+                                    password.</span>
+                            </span>
+                        </div>
+                        <!--<div class="form-group custom_checkbox">-->
+                        <div class="form-group agreement">
+                            <input type="checkbox" name="agreement" ng-model="agreement" required />
+                            <!--<label for="box1"></label>-->
+                            <!--<p>-->
+                            <a href="#/terms" target="_blank" class="help"><u>I Agree With Terms And Conditions</u>.</a>
+                            <!--</p>-->
+                            <p><span class="error"
+                                    ng-show="userForm.agreement.$touched && userForm.agreement.$invalid">You must accept
+                                    T&C to register.</span></p>
+                        </div>
+                        <div class="submit_panel">
+                            <div class="form-group">
+                                <button type="submit" ng-disabled="userForm.$invalid" class="sub_button">Submit</button>
+                            </div>
+                            <!--              <div class="suggestion_text">
+                <p>We'll never post anything on Facebook or Google without your permission.</p>
+              </div>-->
+                        </div>
+                    </div>
+                    <div class="haveAccount_panel">
+                        <p></p>
+                        <a href="#/login">Already have an account?</a>
+                        <a href="#/login" style="color: #fb6542">Access My SmartPlanner<sup>TM</sup></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<div ng-include="'public/app/templates/site/partials/footer.html'"></div>

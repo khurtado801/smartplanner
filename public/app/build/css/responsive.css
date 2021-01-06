@@ -1,0 +1,161 @@
+@media screen and (min-width:992px) and (max-width:1300px) {
+    .smart-planner {padding: 0px 0 0;}
+    }
+    @media screen and (min-width:992px) and (max-width:1199px) {
+    .smart-planner { width: 82%; }
+    }
+    @media screen and (min-width:992px) and (max-width:1025px) {
+    .container_login {padding: 20px 0 130px;}
+    .smart-planner {padding: 0px 0 0;}
+    .column-2, .column-3, .column-4 { padding-left: 5px; padding-right: 5px; }
+    /**************************** Loader **********************************/
+    #loading-bar-spinner .spinner-icon { top: 45%; left: 45%; -webkit-transform: translate(-45%, -45%); -o-transform: translate(-45%, -45%); -moz-transform: translate(-45%, -45%); transform: translate(-45%, -45%); }
+    }
+    @media screen and (min-width:768px) and (max-width:991px) {
+    .smart-planner { width: 100%; }
+    header .slogan li::before { right: -12px; }
+    header .slogan li { font-size: 18px; margin-right: 16px; }
+    .register-form .select-area select { padding: 0 9px; }
+    .ui-select-match { width: 220px; }
+    .container_login { padding: 60px 0 130px; }
+    .phone-number .col-xs-12.col-sm-12.col-md-6 { padding-right: 0; padding-left: 0; margin-top: 20px; }
+    /******************* Guid work ***********************/
+    .ELA_literature .tab-content form.select-tab { width: 330px; }
+    .ELA_literature > ul > li { font-size: 18px; margin-right: 14px; }
+    .tab-menu li a { font-size: 18px; padding: 8px 30px; }
+    .ELA_literature .tab-content > .active { width: 330px; }
+    .toolbar-box-result { width: 330px; }
+    .editing-nav-menu > ul > li { margin-left: 8px; }
+    .editing-nav-menu > ul > li > a { font-size: 16px; padding: 0 2px 5px; }
+    .save_button { font-size: 16px !important; padding: 4px 16px 6px !important; }
+    nav.editing-nav-menu { margin-top: -7px; }
+    .ELA_literature > h5 { font-size: 18px; }
+    .editorbar_section > h5 { font-size: 18px; }
+    .editing-nav-menu > ul { margin-bottom: 20px; }
+    /**************************** Login **********************************/
+    .container_login { padding: 60px 0 0; }
+    .container_login {padding: 20px 0 130px;}
+    /**************************** Table **********************************/
+    .column-2, .column-3, .column-4 { padding-left: 5px; padding-right: 5px; }
+    /**************************** Loader **********************************/
+    #loading-bar-spinner .spinner-icon { top: 45%; left: 45%; -webkit-transform: translate(-45%, -45%); -o-transform: translate(-45%, -45%); -moz-transform: translate(-45%, -45%); transform: translate(-45%, -45%); }
+    }
+    @media screen and (max-width:767px) {
+    /**************************************** Header **************************************/
+    header .logo { margin-left: 0; }
+    .logo img {margin: 0 auto 20px;}
+    header .slogan li { margin-right: 22px; }
+    header .slogan li::before { right: -18px; top: -1px; }
+    .slogan ul { margin-bottom: 20px; }
+    header .login-area { margin-right: 0; text-align: center; }
+    .login-area ul { margin: 0; }
+    /**************************************** Footer **************************************/
+    footer {
+    text-align: center;
+    position: static;
+    padding: 15px 0;
+    padding-bottom: 5%;
+    height: 9vh !important;
+    }
+    .copyrights p {float: none;font-size: 1.6vh;margin-bottom: -11px;}
+    .feedback p {float: none;font-size: 1.6vh;padding: -2.5vh;}
+    /**************************************** Section **************************************/
+    .smart-planner {width: 100%;padding: 0px 0 0;}
+    .smart-planner h1 {font-size: 37px;margin-bottom: 0;}
+    .smart-planner h3 { font-size: 28px; }
+    .smart-planner h4 { font-size: 26px; }
+    .smart-planner p { font-size: 22px; }
+    .home-greeting-text { margin-bottom: 10px !important; }
+    .smart-planner .buttons { margin: 30px 0; }
+    .start-new-btn {font-size: 20px;padding: 7px 16px;}
+    /**************************************** Login **************************************/
+    .container_login {padding: 0px 0;width: auto;}
+    .register-form h2 { font-size: 26px; }
+    .sub_button {font-size: 20px;padding: 1px 20px;}
+    .edit-exit-btn {font-size: 20px;padding: 7px 16px;}
+    .forgot_password > a { font-size: 16px; }
+    .haveAccount_panel p { font-size: 16px; }
+    .haveAccount_panel a { font-size: 16px; }
+    .phone-number .col-xs-12.col-sm-12.col-md-6 { padding-right: 0; padding-left: 0; margin-top: 20px; }
+    /**************************************** Table **************************************/
+    .tab-header.column-1, .tab-header.column-2, .tab-header.column-3, .tab-header.column-4 { color: #fff; font-size: 14px; font-weight: 500; }
+    .selection-area { padding: 30px 0; }
+    .column-1 { font-size: 14px; }
+    /**************************************** Loader **************************************/
+    #loading-bar-spinner .spinner-icon { left: 40%; position: relative; top: 40%; -moz-transform: translate(-40%, -40%); -webkit-transform: translate(-40%, -40%); -o-transform: translate(-40%, -40%); transform: translate(-40%, -40%); }
+    /**************************************** Help **************************************/
+    .help-section { padding-bottom: 30px; padding-top: 30px; }
+    /**************************************** Guid Work **************************************/
+    .guid-work { padding: 30px 0; }
+    .ELA_literature > ul > li { font-size: 14px; margin-right: 20px; }
+    .ELA_literature > h5 { font-size: 14px; text-align: left; }
+    .tab-menu { margin-top: 20px; }
+    .tab-menu li a { font-size: 16px; padding: 6px 24px; }
+    .ELA_literature .tab-content form.select-tab {padding: 14px;width: auto;}
+    .editor-toolbar { margin-top: 20px; float: left; }
+    .editing-nav-menu > ul { margin-bottom: 24px; float: left; }
+    .editing-nav-menu > ul > li > a { font-size: 14px; display: inline-block; }
+    .save_button { font-size: 14px !important; padding: 3px 10px 5px !important; }
+    .editing-nav-menu > ul > li { margin-left: 8px; }
+    .editorbar_section > h5 { font-size: 14px; text-align: left; margin-bottom: 20px; }
+    .result-title { margin-bottom: 8px; }
+    .editormain-container .lession-complete .lesson-name strong { font-size: 14px; }
+    .custom_checkbox label span { font-size: 14px; }
+    .editordesc { width: 100%; padding: 12px; }
+    .grade-sec { margin-bottom: 20px; }
+    .subject-sec { margin-bottom: 20px; }
+    .unit-title { margin-top: 20px; }
+    .unit-title { width: 246px; }
+    .toolbar-box-result { width: auto; }
+    .left-sub-concept{width:90%;}
+    }
+
+    @media only screen and (max-width: 800px) {
+	
+        /* Force table to not be like tables anymore */
+        #no-more-tables table, 
+        #no-more-tables thead, 
+        #no-more-tables tbody, 
+        #no-more-tables th, 
+        #no-more-tables td, 
+        #no-more-tables tr { 
+            display: block; 
+        }
+     
+        /* Hide table headers (but not display: none;, for accessibility) */
+        #no-more-tables thead tr { 
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+     
+        #no-more-tables tr { border: 1px solid #ccc; }
+     
+        #no-more-tables td { 
+            /* Behave  like a "row" */
+            border: none;
+            border-bottom: 1px solid #eee; 
+            position: relative;
+            padding-left: 50%; 
+            white-space: normal;
+            text-align:left;
+        }
+     
+        #no-more-tables td:before { 
+            /* Now like a table header */
+            position: absolute;
+            /* Top/left values mimic padding */
+            top: 6px;
+            left: 6px;
+            width: 45%; 
+            padding-right: 10px; 
+            white-space: nowrap;
+            text-align:left;
+            font-weight: bold;
+        }
+     
+        /*
+        Label the data
+        */
+        #no-more-tables td:before { content: attr(data-title); }
+    }

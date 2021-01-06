@@ -1,0 +1,60 @@
+<section ng-controller="outlineController" >
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-5">
+            <div class="editormain-container">          
+                <div class="editordesc">
+                    <div class="result-title">
+                        <h2>Download PDF <a href="javascript:void(0)" ng-click="downloadpdf()"><i class="fa fa-download" aria-hidden="true"></i></a></h2>
+                    </div>
+                </div>          
+                <div class="editordesc">
+                    <div class="result-title">
+                        <h2>Summary</h2>              
+                    </div>
+                    <div class="lession-complete">
+                        <div class="editor_description" ng-bind-html="trustAsHtml(summary)">          
+                        </div>
+                    </div>
+                </div>
+
+                <div class="editordesc">
+                    <div class="result-title">
+                        <h2>Standards</h2>              
+                    </div>
+                    <div class="lession-complete">                        
+                        <div class="editor_description" ng-bind-html="standard.desc">           
+                        </div>
+                    </div>
+                </div>
+
+                <div class="editordesc">
+                    <div class="result-title">
+                        <h2>Essential Questions</h2>              
+                    </div>
+                    <div class="lession-complete">
+                        <div class="editor_description" ng-bind-html="essential.desc">           
+                        </div>
+                    </div>
+                </div>
+                <div class="editordesc">
+                    <div class="result-title">
+                        <h2>Core Ideas</h2>              
+                    </div>
+                    <div class="lession-complete">
+                        <div class="editor_description" ng-bind-html="core_ideas.desc">           
+                        </div>
+                    </div>
+                </div>
+                <div class="editordesc">
+                    <div class="result-title">
+                        <h2>Vocabulary</h2>              
+                    </div>
+                    <div class="lession-complete">
+                        <div class="editor_description" ng-bind-html="vocabularies.desc">           
+                        </div>
+                    </div>
+                </div>
+            </div>                  
+        </div>
+    </div>
+</section>

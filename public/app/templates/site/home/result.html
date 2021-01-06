@@ -1,0 +1,50 @@
+<div ng-include="'public/app/templates/site/partials/header.html'"></div>
+<section class="innerContainer" ng-controller="homeController" ng-init="homeSearchResult()">
+	<div class="container">
+		<div ng-include="'public/app/templates/site/partials/message_display.html'"></div>
+		<div ng-if="loading == true" id="loader"></div>	
+		<section class="col-2-right-layout ng-scope">
+	        <div flex>
+	        	<md-toolbar layout="row" class="md-hue-3">
+	        		<div class="md-toolbar-tools">
+	        			<span>Total {{projectListData.length}} Search Result(s) Found</span>
+	        		</div>
+	        	</md-toolbar>
+	              
+	        	<md-content>        				
+	        		<md-list class="md-dense" flex >	
+	        			
+	        			<md-list-item class="md-3-line" dir-paginate="projectData in projectListData | itemsPerPage: 5">
+	        				
+	        				<div class="md-list-item-text" layout="column">
+	        					<h3>
+	        						<a href="#/freelancer/project/view/id/{{projectData.id}}">{{projectData.job_title}}</a>
+	        					</h3>
+	        					<img src="projectData.job_images[0]" />
+	        					
+	        					<p ng-repeat="(key, value) for projectData in projectData.job_images">{{projectData.job_images}}</p>
+	        				
+	        					<p>{{projectData.job_description}}</p>
+	        					<p>{{projectData.job_cost_min}} - {{projectData.job_cost_max}} CHF</p>
+	        					
+	        					<!-- <p ng-init="getImagesByArray(projectData.job_images)">
+	        						<span ng-repeat="JI in jobImages">{{JI}}</span>
+	        					</p>
+ -->
+	        					 
+	        					<p ng-init="getSkillsByArray(projectData.job_skills)">
+	        						<span ng-repeat="js in jobSkills">{{js.skill}}</span>
+	        					</p>	        				
+	        				</div>	        				
+	        			</md-list-item>
+	        			<md-divider ></md-divider>
+	        		</md-list>
+	        		<dir-pagination-controls></dir-pagination-controls>
+	        		
+	        	</md-content>
+	        </div>
+        </section>
+	</div>
+</section>
+<div ng-include="'public/app/templates/site/partials/footer.html'"></div>
+

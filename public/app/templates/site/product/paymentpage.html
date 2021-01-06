@@ -1,0 +1,174 @@
+<div ng-include="'templates/site/partials/header.html'"></div>
+<section class="outer_container padding_b50">
+	<div ng-include="'templates/site/partials/header_navigantion.html'"></div>
+	<section class="col-1-layout">
+		<section class="container clearfix">
+			<div class="col-main" id="ProductDetails" ng-init="getProductDetails()">
+				<div class="breadcome">
+					<a href="/">Home</a>/ <a href="#">Products</a>/<span class="currant">{{productDetails[0].name}}</span>
+				</div>
+				<!-- light box div start -->
+				<div class="lightbox" id="lightbox">
+				     <img src="{{productDetails[0].largeImage}}" alt="Image Not Available" >
+				</div>
+				<!-- light box div start -->
+
+				<div ng-if="loading == true" id="loader"></div>	
+				<p style="text-align: center;" ng-if="productDetails.length == 0" >Sorry, Currentely no product details avilable.</p>
+				
+				<div class="product-view">
+					<div class="product-essential" ng-if="productDetails.length > 0" >
+						<div class="product-img-box">
+							<p class="product-image product-image-zoom">
+								<img src="{{productDetails[0].largeImage}}" alt="Image Not Available" title="zoom">
+							</p>
+
+							
+
+							<div class="zoom">
+								<a href="javacseipr:void(0)" ng-lightbox='{"trigger": "manual", "element": "lightbox"}'>
+									<img alt="Zoom" src="/build/images/zoom_icon.png">
+								</a>
+							</div>
+
+
+
+							<div class="thumb_slider imageitem owl-carousel owl-theme" id="thumb_slider">
+								<!-- <a href="#" class="prev">&nbsp;</a>
+								<a href="#" class="next">&nbsp;</a> -->	
+
+								<div>
+									<li class="active" ng-lightbox='{"trigger": "manual", "element": "lightbox"}'>
+										<a href="#" title=""><img alt="" src="{{productDetails[0].mediumImage}}"></a>
+									</li>
+								</div>
+								<div>
+									<li >
+										<a href="#" title="">
+										<img alt="" src="{{productDetails[0].mediumImage}}"></a>
+									</li>
+								</div>
+								<div>
+									<li>
+										<a href="#" title=""><img alt="" src="{{productDetails[0].mediumImage}}"></a>
+									</li>
+								</div>
+								<div>
+									<li>
+										<a href="#" title=""><img alt="" src="{{productDetails[0].mediumImage}}"></a>
+									</li>
+								</div>
+								<div>
+									<li>
+										<a href="#" title=""><img alt="" src="{{productDetails[0].mediumImage}}"></a>
+									</li>
+								</div>
+								<div>
+									<li>
+										<a href="#" title=""><img alt="" src="{{productDetails[0].mediumImage}}"></a>
+									</li>
+								</div>
+								<div>
+									<li>
+										<a href="#" title=""><img alt="" src="{{productDetails[0].mediumImage}}"></a>
+									</li>
+								</div>								
+							</div>
+							<div class="clear"></div>
+						</div>
+
+						<div class="product-shop">
+							<div class="page-title">
+								<h1>{{productDetails[0].name}}</h1>
+								<div class="star">
+									<img src="{{productDetails[0].customerRatingImage}}" alt="" title="{{productDetails[0].customerRating}}">
+									<!-- <span >
+									<a href="#" ><img src="/build/images/star.png"></a>
+									<a href="#" ><img src="/build/images/star.png"></a>
+									<a href="#" ><img src="/build/images/star.png"></a>
+									<a href="#" ><img src="/build/images/star1.png"></a>
+									<a href="#" ><img src="/build/images/star2.png"></a>
+								</span> -->
+							</div>
+						</div>
+
+						<div class="row">							
+							<div class="price-box">
+								<span class="regular-price">
+									<label>Price:</label>
+									<span class="price">${{productDetails[0].salePrice | ifEmpty:' (NA)' | limitTo:5 }}</span>
+								</span> 
+							</div>
+							<p class="brand" ng-if="productDetails[0].brandName.length > 0">
+								<label>Brand:</label> <span>{{productDetails[0].brandName}}</span>
+							</p>
+							<p class="sku">
+								<label>SKU:</label> <span>{{productDetails[0].itemId}}</span>
+							</p>
+								<!-- <p class="brand" ng-if="productDetails[0].freeShipToStore.length > 0" >
+									<label>Shipping:</label>
+									<span>{{productDetails[0].freeShipToStore}}</span>
+								</p> -->
+
+								<p class="brand" ng-if="productDetails[0].modelNumber.length > 0" >
+									<label>Model:</label>
+									<span>{{productDetails[0].modelNumber}}</span>
+								</p>
+
+								<a href="javascript:void(0)" ng-click="addToCart(productDetails[0].upc, productDetails[0].salePrice , productDetails[0] , 1 )" href="javascript:void(0)" type="button" title="Add to Cart" class="btn-cart">Add to Cart</a>
+								<div class="clear"></div>
+							</div>
+
+							<div class="row none_padding">
+								<div class="tab">
+									<!-- <ul>
+										<li class="active"><a href="#">Description</a></li>
+										<li><a href="#">Other Details</a></li>
+									</ul> -->
+									<div class="tab_contant">
+										<h3>Product Description</h3>	
+										<!-- <p id="test">{{productDetails[0].longDescription}}</p> -->
+										<p class="formatedHtml" ng-bind-html="productDetails[0].longDescription"></p>
+										<ul class="list">											
+											<li ng-if="productDetails[0].modelNumber.length > 0">Model:	{{productDetails[0].modelNumber}}</li>
+											<li ng-if="productDetails[0].upc.length > 0">UPC:	{{productDetails[0].upc}}</li>
+											<li ng-if="productDetails[0].stock.length > 0">Stock:	{{productDetails[0].stock}}</li>
+											<li ng-if="productDetails[0].attributes.option.length > 0">Shape:	{{productDetails[0].attributes.option}}</li>
+											<li ng-if="productDetails[0].brandName.length > 0">Brand:	{{productDetails[0].brandName}}</li>
+											<li ng-if="productDetails[0].msrp.length > 0">MSRP:	${{productDetails[0].msrp}}</li>
+											<li ng-if="productDetails[0].color.length > 0">Color:	{{productDetails[0].color}}</li>
+											<li ng-if="productDetails[0].bundle.length > 0">Bundle:	{{productDetails[0].bundle}}</li>
+											<li ng-if="productDetails[0].sellerInfo.length > 0">Seller Info:	{{productDetails[0].sellerInfo}}</li>
+											<li ng-if="productDetails[0].size.length > 0">Size:	{{productDetails[0].size}}</li>
+											<li>Clearence:	{{productDetails[0].clearance}}</li>
+											<li>Pre Order:	{{productDetails[0].preOrder}}</li>
+										</ul>
+										<div class="clear"></div>
+									</div>
+
+								</div>  
+							</div>
+
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+				<!-- <div ng-include="'templates/site/partials/related_product.html'"></div> -->
+				<div class="clear"></div>
+				<div class="product-view" ng-include="'templates/site/partials/recommended_product.html'"></div>
+			</div>
+		</section>
+	</section>
+</section>
+<script>
+setTimeout(function(){
+    $("#thumb_slider").owlCarousel({     
+      navigation : false, // Show next and prev buttons
+      items : 5,
+      autoPlay : true,
+    });
+},500);
+</script>
+<div ng-include="'templates/site/partials/footer.html'"></div>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<div ng-include="'public/app/templates/site/partials/header.html'"></div>
+<section>
+    <div class="container jumbotron" ng-controller="paymentController">
+        <div ng-include="'public/app/templates/site/partials/message_display.html'"></div>
+        <div ng-init="getPlanDetails()">
+
+            <form class="form-horizontal" novalidate>
+                <!--<div ng-init="getPlanDetails()">-->
+                <fieldset class="form-horizontal">
+                    <legend>Plan Details</legend>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="plan_name">Select Plan</label>
+                        <div class="col-sm-3">
+
+                            <select class="form-control col-sm-2 select-results" id="selected_plan" name="selected_plan"
+                                ng-options="plan.id as plan.nickname for plan in plan_list" ng-change="plan_change()"
+                                ng-model="selected_plan">
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- <div class="form-group">
+                        <label class="col-sm-3 control-label" for="plan_name">Plan Name</label>
+                        <div class="col-sm-3">
+                            <p>{{plan_name}}</p>
+                            <input type="hidden" class="form-control" ng-model="plan_id" name="plan_id" id="plan_id">
+                            <input type="hidden" class="form-control" ng-model="plan_key" name="plan_key" id="plan_key">
+                            <input type="hidden" class="form-control" ng-model="email" name="email" id="email">
+                        </div>
+                    </div> -->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="price">Price</label>
+                        <div class="col-sm-3">
+                            <p>${{price}} USD</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="duration">Duration</label>
+                        <div class="col-sm-3">
+                            <p>{{duration_count}} {{duration}}</p>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+
+            <fieldset class="payment-fields ">
+                <legend>Payment</legend>
+                <!-- Create a button that your customers click to complete their purchase. Customize the styling to suit your branding. -->
+                <button
+                    style="background-color:#375E97;color:#FFF;padding:8px 12px;border:0;border-radius:4px;font-size:1em"
+                    id="{{plan_id}}" class="sub_button" role="link" onClick="checkOut(this.id)" type="button">
+                    Add plan to cart and checkout
+                </button>
+
+                <div id="error-message"></div>
+            </fieldset>
+
+            <script>
+                const stripe = Stripe( 'pk_test_uViZbYAtpXAHz9Gn96famHmH00h1j8km9Z' );
+
+                handleResult = (result) =>{
+                    if (result.error) {
+                        let displayError = document.getElementById("error-message");
+                        displayError.textContent = result.error.message;
+                    }
+                };
+
+                checkOut = (planId) => {
+                    const url = 'api/createCheckoutSession';
+                    const data = {
+                        planId: planId,
+                    }
+
+
+                        const response = fetch(url, {
+                            method: 'POST',
+                            headers: {
+                                'Content-type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                planId: planId
+                            })
+                        }).then(function(result){
+                            return result.json();
+                        })
+
+                    
+                    // return fetch('createStripeSession', {
+                    //     method: 'POST',
+                    //     headers: {
+                    //         'Content-type': 'application/json'
+                    //     },
+                    //     body: JSON.stringify({
+                    //         planId: planId
+                    //     })
+                    // }).then(function(result) {
+                    //     return result.json();
+                    // });
+                }
+
+                // checkOut = ( planId ) => {
+                //     console.log('PLAN ID: ', planId)
+                //     stripe
+                //         .redirectToCheckout( {
+                //             items: [{
+                //                 plan: planId,
+                //                 quantity: 1
+                //             }],
+                //             billingAddressCollection: 'required',
+
+                //             successUrl: window.location.protocol + '//localhost:8080/#/login',
+                //             cancelUrl: window.location.protocol + '//evolvededucator.com/canceled',
+                //         } )
+                //         .then(handleResult);
+                // };
+
+                // document
+                //     .getElementsByClassName("stripe-plan-btn")[0]
+                //     .addEventListener( "click", function ( e ) {
+                //         console.log( "subscribeBtn: ", subscriptionPlanId )
+                //         redirectToCheckout( subscriptionPlanId )
+                //     } );
+
+                // var checkoutButton = document.getElementById('{{plan_id}}');
+                // checkoutButton.addEventListener('click', function (result) {
+
+                //     console.log("STRIPE RES: ", result)
+                //     stripe.redirectToCheckout({
+                //             items: [{
+                //                 plan: 'plan_F4C0MUbwIPbC8j',
+                //                 quantity: 1
+                //             }],
+                //             billingAddressCollection: 'required',
+
+                //             successUrl: window.location.protocol + '//localhost:8080/#/login',
+                //             cancelUrl: window.location.protocol + '//evolvededucator.com/canceled',
+                //         })
+                //         .then(function (result) {
+                //             if (result.error) {
+
+                //                 var displayError = document.getElementById('error-message');
+                //                 displayError.textContent = result.error.message;
+                //             }
+                //         });
+                // });
+            </script>
+            <div ng-include="'public/app/templates/site/partials/footer.html'"></div>

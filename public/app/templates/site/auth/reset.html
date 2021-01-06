@@ -1,0 +1,53 @@
+<div ng-include="'templates/site/partials/header.html'"></div>
+<div class="innerContainer" ng-controller="authController" ng-init="checkResetToken()" >
+	<div class="container" ng-init="getFormToken()">
+		<div ng-include="'templates/site/partials/message_display.html'"></div>
+		
+			<div class="panel-heading">
+				<h3 class="panel-title">Reset Password</h3>
+			</div>
+
+			<div class="panel-body" >
+				<form name="resetPasswordForm" class="form-horizontal" ng-submit="resetPasswordForm.$valid &&resetPassword(form)" novalidate>
+
+					<div class="form-group">
+						<label for="inputPassword"  class="col-lg-2 control-label">Password</label>
+						<div class="col-lg-10">
+							<input type="password" name="password" ng-model="password" class="form-control" id="inputPassword" placeholder="Password" required>
+						</div>
+
+						<label class="col-lg-2 control-label"></label>
+						<div ng-show="resetPasswordForm.$submitted || resetPasswordForm.password.$touched" class="has-error col-lg-10">
+							<span ng-show="resetPasswordForm.password.$error.required" class="help-block has-error">Password is required.</span>
+							<span ng-show="resetPasswordForm.password.$error.password" class="help-block has-error">This is not a valid password.</span>
+						</div>
+
+					</div>
+					<div class="form-group">
+						<label for="inputPassword"  class="col-lg-2 control-label">Confirm Password</label>
+						<div class="col-lg-10">
+							<input type="password" name="confirm_password" ng-model="confirm_password" class="form-control" id="inputPassword" placeholder=" Re-Type Password" required>
+						</div>
+
+						<div ng-show="resetPasswordForm.$submitted || resetPasswordForm.confirm_password.$touched" class="has-error col-lg-10">
+							<span ng-show="resetPasswordForm.confirm_password.$error.required" class="help-block has-error">Confirm Password is required.</span>
+							<span ng-show="resetPasswordForm.confirm_password.$error.confirm_password" class="help-block has-error">This is not a valid confirm_password.</span>
+							<span ng-show="(resetPasswordForm.password.$dirty && resetPasswordForm.confirm_password.$dirty) && (password != confirm_password)" class="help-block has-error">Password Mismatched</span>
+						</div>
+
+					</div>
+
+					<div class="form-group">
+						<div class="col-lg-10 col-lg-offset-2">
+							<input type="hidden" ng-model="authFormToken._token" >
+							<input type="hidden" ng-model="resetToken.token" >
+							<a class="btn btn-default" href="/login">Cancel</a>
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

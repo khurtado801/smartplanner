@@ -1,0 +1,12 @@
+<div ng-include="'public/app/templates/site/partials/header.html'"></div>
+<section>
+    <div class="container">
+        <div ng-controller="pageController" class="innerContainer" ng-init="privacy()">
+            <div class="help-section">
+                <h3 class="md-title">{{privacyDetail.title}}</h3>
+                <div class="editor_description" ng-bind-html="privacyDetail.description"> </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div ng-include="'public/app/templates/site/partials/footer.html'"></div>

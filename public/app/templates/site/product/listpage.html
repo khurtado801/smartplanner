@@ -1,0 +1,188 @@
+ 
+<section class="outer_container padding_b50" ng-init="getListpageProducts()">
+	
+	<div ng-include="'templates/site/partials/header_navigantion.html'"></div>
+	<!-- {{productlist[0]}} -->
+	<!-- <div class="banner-inr clearfix"><img src="/build/images/inner-banner1.jpg"></div> -->
+	<section class="col2-left-layout">
+		<section class="container clearfix">
+			<div class="col-main" id="product_listing">			
+				<div ng-if="loading == true" id="loader"></div>
+				<div class="breadcome">
+					<a href="#">Home</a>/<span class="currant">{{productCategory}}</span>
+				</div>				
+				<div class="page-title category-title">
+					<h1>{{productCategory}}</h1>
+					<p ng-if ="productlist == 'notFound'">There are no products available currentely.</p>
+				</div>
+				<div ng-if ="productlist != 'notFound'">
+					<div class="toolbar">
+						<div class="pager">
+							<p class="view-mode">
+								<label>View as:</label>
+								<span>
+									<a class="list" title="List" href="productgrid?dept={{productCategory}}">Grid</a>&nbsp;
+								</span>
+								<span>
+									<strong class="grid" title="Grid">List</strong>&nbsp;
+								</span>
+							</p>
+							<div class="sort-by hidden-phone">
+								<label>Sort By</label>
+								<select>
+									<option>Position</option>
+									<option>Name</option>
+									<option>Price</option>
+								</select>
+								<a href="#"><img src="/build/images/i_asc_arrow.gif" alt="" class="v-middle"></a>
+							</div>
+							<div class="limiter visible-desktop">
+								<label>Show</label>
+								<select>
+									<option>9</option>
+									<option>18</option>
+									<option>32</option>
+									<option>64</option>
+									<option>All</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					{{productlist}}
+					<div class="col_row">
+						<div class="col12" ng-repeat="productlist in productlist">
+							<div class="new-arrival productlist">
+								<div class="new-arrival-list">
+									<div class="listmain">
+										<div class="listbox productlist">
+											<div class="image-item imageitem">
+												<a href="javascript:void(0)" ng-click="storeDataIntoStorage(productlist, productlist.upc)">
+													<img ng-src="{{productlist.mediumImage}}" err-src="/build/images/No-images.png" class="user-image" alt="Image Not Found">													
+												</a>
+											</div>
+											<div class="list-content">
+												<h2 class="links">
+													<a href="javascript:void(0)" ng-click="storeDataIntoStorage(productlist, productlist.upc)">{{productlist.name }} <span ng-if="productlist.name.length > 150">...</span></a>
+													
+												</h2>
+												<div class="star">
+													<img ng-src="{{productlist.customerRatingImage}}" fallback-src="/build/images/noimage.gif" alt="No Rating(s)" title="{{productlist.customerRating}}">
+												</div>
+												<p>
+													<span class="formatedHtml" ng-bind-html="productlist.shortDescription	 | limitTo:250"></span>
+													<a class="readmore" href="javascript:void(0)" ng-if="productlist.shortDescription.length > 250" ng-click="storeDataIntoStorage(productlist, productlist.upc)"> ...read more
+													</a>
+												</p>
+												<strong>${{productlist.salePrice | ifEmpty:' (NA)' | limitTo:5 }}</strong>
+												<div class="compare">
+													<a href="javascript:void(0)">Compare</a>&nbsp;|&nbsp;<a href="javascript:void(0)">Wishlist</a> 
+												</div>
+												<!-- <a target="_blank" href="{{productlist[key].addToCartUrl}}">Add to cart</a> -->
+												<a ng-click="addToCart(productlist.upc , productlist.salePrice , productlist, 1)" href="javascript:void(0)">Add to cart</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>						
+					</div>
+					<div class="toolbar">
+						<div class="pager">
+							<p class="view-mode">
+								<label>View as:</label>
+								<span>
+									<a class="list" title="List" href="productgrid?dept={{productCategory}}">Grid</a>&nbsp;
+								</span>
+								<span>
+									<strong class="grid" title="Grid">List</strong>&nbsp;
+								</span>
+							</p>
+							<div class="sort-by hidden-phone">
+								<label>Sort By</label>
+								<select>
+									<option>Position</option>
+									<option>Name</option>
+									<option>Price</option>
+								</select>
+								<a href="#"><img src="/build/images/i_asc_arrow.gif" alt="" class="v-middle"></a>
+							</div>
+							<div class="limiter visible-desktop">
+								<label>Show</label>
+								<select>
+									<option>9</option>
+									<option>18</option>
+									<option>32</option>
+									<option>64</option>
+									<option>All</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-left sidebar">
+				<div class="block block-list block-compare">
+					<div class="block-title">Compare Products (2)</div>
+					<div class="block-content">
+						<ol id="compare-items">
+							<li class="item odd">
+								<a href="#" class="product-name">product-name</a>
+								<a href="#" class="btn-remove">&nbsp;</a>
+							</li>
+							<li class="item even">
+								<a href="#" class="product-name">Product-name</a>
+								<a href="#" class="btn-remove">&nbsp;</a>
+							</li>
+						</ol>
+						<div class="actions clearfix">
+							<a href="#">Clear All</a>
+							<button type="button" class="button">Compare</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="block block-subscribe">
+					<div class="block-title">Newsletter</div>
+					<div class="block-content">
+						<div class="form-subscribe-header">
+							<label for="newsletter">Sign Up for Our Newsletter:</label>
+						</div>
+						<div class="input-box">
+							<input type="text" class="input-text" title="Sign up for our newsletter" id="newsletter" name="email">
+						</div>
+						<div class="actions clearfix">
+							<button class="button" title="Subscribe" type="submit">Subscribe</button>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+				<div class="block block-layered-nav">
+					<div class="block-title">Shop By</div>
+					<div class="block-content">
+						<dl id="narrow-by-list">
+							<dt class="odd">Price</dt>
+							<dd class="odd">
+								<ol>
+									<li><a href="#"><span class="price">$50.00</span> - <span class="price">$60.00</span></a>(6)</li>
+								</ol>
+							</dd>
+							<dt class="last even">Designer</dt>
+							<dd class="last even">
+								<ol>
+									<li><a href="#">Ciner</a>(6)</li>
+								</ol>
+							</dd>
+						</dl>
+					</div>
+				</div>
+
+
+			</div>
+			<div class="clear"></div> 
+			<div ng-include="'templates/site/partials/most_popular_products.html'"></div>
+		</section>
+	</section>
+</section>
+
+<!-- footer -->
+<div ng-include="'templates/site/partials/footer.html'"></div>

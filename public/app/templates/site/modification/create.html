@@ -1,0 +1,72 @@
+<div ng-include="'public/app/templates/site/partials/header.html'"></div>
+<section ng-controller="outlineController">
+    <div class="container">
+        <div ng-include="'public/app/templates/site/partials/message_display.html'"></div>
+        <div class="guid-work">
+            <div ng-show="classdiv" class="col-xs-12 col-sm-6 col-md-5">
+                <div class="ELA_literature">
+                    <ul class="clearfix">
+                        <li>{{lesson_data.grade_name}}</li>
+                        <li>{{lesson_data.subject_name}}</li>
+                        <li>{{lesson_data.theme_name}}</li>
+                    </ul>
+                    <h5>{{lesson_data.unit_title}}</h5>
+
+                    <!-- Use select-tab.html to select key concepts/learning targets -->
+                    <div id="sortable" class="tab-menu content">
+                        <div ng-include="'public/app/templates/site/lession/select-tab.html'"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ng-init="getEditorcontent()" -->
+            <div ng-show="classdiv" ng-init="getEditorcontent()">
+                <div ng-include="'public/app/templates/site/partials/menu.html'"></div>
+                <div class="col-xs-12 col-sm-6 col-md-7">
+                    <div ng-show="emptybxdiv" class="editordesc">
+                        <div class="result-title">
+                            <h2>Get Started!</h2>
+                        </div>
+                        <div class="lession-complete">
+                            <div class="lesson-name">
+                                <strong>Choose Key Concepts and Learning Targets from the left panel.</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="!emptybxdiv">
+                        <form method="post">
+                            <div class="editor-box-full">
+                                <textarea ui-tinymce="tinymceOptionsModi"
+                                    ng-model="lesson_modification">{{summary.desc}}</textarea>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="external-scroll_y">
+                        <div class="scroll-element_outer">
+                            <div class="scroll-element_size"></div>
+                            <div class="scroll-element_track"></div>
+                            <div class="scroll-bar"></div>
+                        </div>
+                    </div>
+                    <div class="external-scroll_yy">
+                        <div class="scroll-element_outer">
+                            <div class="scroll-element_size"></div>
+                            <div class="scroll-element_track"></div>
+                            <div class="scroll-bar"></div>
+                        </div>
+                    </div>
+                    <div class="external-scroll_x">
+                        <div class="scroll-element_outer">
+                            <div class="scroll-element_size"></div>
+                            <div class="scroll-element_track"></div>
+                            <div class="scroll-bar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div ng-include="'public/app/templates/site/partials/footer.html'"></div>

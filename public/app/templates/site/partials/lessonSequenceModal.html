@@ -1,0 +1,174 @@
+<div class="modal-dialog table-responsive" ng-init="getAllSequenceData()">
+    <form id="lessonSequencePdfTable" name="form.userForm" ng-submit="submitForm()" novalidate
+        class="vertical-alignment-helper">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th ng-class="[userSelectedHeader]">Session or Date</th>
+                    <th ng-class="[bloomWebbHeader]" id="bloomWebbReset" ng-click="resetBlooms()">Bloom's Taxonomy
+                        Knowledge Base</th>
+                    <!-- <th class="bloomWebbHeaderComplete" id="bloomWebbReset" ng-click="resetBlooms()" ng-model="bloomWebbHeader" ng-if="bloomWebbHeader">Bloom's Taxonomy Knowledge Base</th> -->
+                    <!-- <th class="bloomWebbHeader" id="bloomWebbReset" ng-click="resetBlooms()" ng-model="bloomWebbHeader" ng-if="!bloomWebbHeader">Bloom's Taxonomy Knowledge Base</th> -->
+                    <th ng-class="[activityHeader]" id="activityReset" ng-click="resetActivities()">Activity Name and
+                        Description</th>
+                    <th ng-class="[deliveryHeader]" id="deliveryReset" ng-click="resetDeliveries()">Delivery</th>
+                    <th ng-class="[standardHeader]" id="standardReset" ng-click="resetStandards()">Beyond the Standards
+                    </th>
+                    <th ng-class='[modificationHeader]' id="modificationReset" ng-click="resetModifications()">
+                        Modifications</th>
+                </tr>
+            </thead>
+            <tbody class="table-body">
+                <tr>
+                    <td ng-class="[userCompletesData]">User completes</td>
+                    <td ng-class="[bloomWebbData]" style="min-width: 180px; max-width: 180px;">
+                        <div id="bloomWebbSequenceDataResult" ng-if="bloomWebbData">
+                            <div
+                                style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif !important; font-size: 14px; display: inline">
+                                <li ng-bind="bloomName"></li>
+                                <li ng-bind="webbDescription"></li>
+                            </div>
+                        </div>
+                        <div id="bloomWebbSequenceData" ng-if="!bloomWebbData">
+                            <div class="accordion" id="myAccordion">
+                                <div class="form-group custom_checkbox">
+                                    <li ng-repeat="bloom in blooms" style="padding-bottom: 5px">
+                                        <div uib-popover={{bloom.description}} popover-trigger="'mouseenter'"
+                                            popover-placement="auto">
+                                            <input ng-hide="$index===bloomRadioIdx" type="radio" name="bloomList"
+                                                ng-model="bloomId" id="{{bloom.id}}" value="{{bloom.id}}"
+                                                ng-click="getRadioValue(bloom.id, bloom.description, bloom.name, $index)">
+                                            <h4
+                                                style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif !important; font-size: 16px; display: inline">
+                                                {{bloom.name}}:</h4>
+                                        </div>
+                                        <div ng-show="$index===webbListIdx">
+                                            <select ng-show="$index===webbListIdx" role="menu" name="webbSelect"
+                                                ng-model="bloomId" style="max-width:180px; padding: 5px 10px;"
+                                                value="{{webb.webb_id}}"
+                                                ng-options="webb.webb_description for webb in availableOpts"
+                                                ng-change="selectedItemChanged(bloomId.webb_id, bloomId.webb_description, 'hide')">
+                                            </select>
+                                            <h5
+                                                style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif !important; font-size: 14px; margin-top: 1px !important; ">
+                                                {{bloomId.webb_description}}</h5>
+                                        </div>
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+
+                    </td>
+                    <td ng-class="[activityData]" style="min-width: 180px; max-width: 180px;">
+                        <div id="activitySequenceDataResult" ng-if="activityData">
+                            <div
+                                style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif !important; font-size: 14px; display: inline">
+                                <li ng-bind="activityName"></li>
+                                <li ng-bind="activityDescription"></li>
+                            </div>
+                        </div>
+                        <div id="activitySequenceData" ng-if="!activityData">
+                            <div class="form-group">
+                                <li ng-repeat="activity in activities" style="padding-bottom: 5px">
+                                    <div uib-popover={{activity.description}} popover-trigger="'mouseenter'"
+                                        popover-placement="auto">
+                                        <input ng-hide="activityRadioIdxHideShowInput " type="radio" name="activityList"
+                                            ng-model="activityId" id="{{activity.activity_id}}"
+                                            value="{{activity.activity_id}}"
+                                            ng-click="getActivityRadioValue(activity.activity_id, activity.name, activity.description, $index)">
+                                        <h4
+                                            style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif !important; font-size: 16px; display: inline">
+                                            {{activity.name}}</h4>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+                    </td>
+                    <td ng-class="[deliveryData]" style="min-width: 180px; max-width: 180px;">
+                        <div id="deliverySequenceDataResult" ng-if="deliveryData">
+                            <div
+                                style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif !important; font-size: 14px; display: inline">
+                                <li ng-bind="deliveryName"></li>
+                            </div>
+                        </div>
+                        <div id="deliverySequenceData" ng-if="!deliveryData">
+                            <div class="form-group">
+                                <li ng-repeat="delivery in deliveries" style="padding-bottom: 5px">
+                                    <div uib-popover={{delivery.name}} popover-trigger="'mouseenter'"
+                                        popover-placement="auto">
+                                        <input ng-hide="deliveryRadioIdxShowHideInput" type="radio" name="deliveryList"
+                                            ng-model="deliveryId" id="{{delivery.delivery_id}}"
+                                            value="{{delivery.delivery_id}}"
+                                            ng-click="getDeliveryRadioValue(delivery.delivery_id, delivery.name, $index)">
+                                        <h4
+                                            style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif !important; font-size: 16px; display: inline">
+                                            {{delivery.name}}</h4>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+                    </td>
+                    <td ng-class="[standardData]" style="min-width: 180px; max-width: 180px;">
+                        <div id="standardSequenceDataResult" ng-if="standardData">
+                            <div
+                                style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif !important; font-size: 14px; display: inline">
+                                <li ng-bind="standardName"></li>
+                            </div>
+                        </div>
+                        <div id="standardSequenceData" ng-if="!standardData">
+                            <div class="form-group">
+                                <li ng-repeat="standard in standards" style="padding-bottom: 5px">
+                                    <div uib-popover={{standard.name}} popover-trigger="'mouseenter'"
+                                        popover-placement="auto">
+                                        <input ng-hide="standardRadioIdxShowHideInput" type="radio" name="standardList"
+                                            ng-model="standardId" id="{{standard.beyond_id}}"
+                                            value="{{standard.beyond_id}}"
+                                            ng-click="getStandardRadioValue(standard.beyond_id, standard.name, $index)">
+                                        <h4
+                                            style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif !important; font-size: 16px; display: inline">
+                                            {{standard.name}}</h4>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+                    </td>
+                    <td ng-class="[modificationData]" style="min-width: 180px; max-width: 180px;">
+                        <div id="modificationSequenceDataResult" ng-if="modificationData">
+                            <div
+                                style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif !important; font-size: 14px; display: inline">
+                                <li ng-bind="modificationName"></li>
+                            </div>
+                        </div>
+                        <div id="modificationSequenceData" ng-if="!modificationData">
+                            <div class="form-group">
+                                <li ng-repeat="modification in modifications" style="padding-bottom: 5px">
+                                    <div uib-popover={{modification.name}} popover-trigger="'mouseenter'"
+                                        popover-placement="auto">
+                                        <input ng-hide="modificationRadioIdx" type="radio" name="modificationList"
+                                            ng-model="modificationId" id="{{modification.modification_id}}"
+                                            value="{{modification.modification_id}}"
+                                            ng-click="getModificationRadioValue(modification.modification_id, modification.name, $index)">
+                                        <h4
+                                            style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif !important; font-size: 16px; display: inline">
+                                            {{modification.name}}</h4>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <span>
+            <!-- <a ng-click="downloadPdf('lessonSequencePdfTable')" class="sequence-download-pdf-button" href="javascript:void(0)">DOWNLOAD PDF</a> -->
+            <!-- <a ng-click="downloadPdf" class="sequence-download-pdf-button" href="javascript:void(0)">DOWNLOAD PDF</a> -->
+
+        </span>
+    </form>
+    <a ng-click="downloadPdf()" class="sequence-download-pdf-button" href="javascript:void(0)">DOWNLOAD PDF</a>
+    <a ng-click="addLessonSequenceEditor()" class="sequence-save-button" href="javascript:void(0)">SAVE</a>
+    <a ng-if="!checkurl()" href="javascript:void(0)" ng-click="addLessonSequenceEditor()" class="add-button ng-scope"
+        aria-hidden="false">ADD</a>
+    <!-- <a ng-show="summary_flag" ng-if="!checkurl()" href="javascript:void(0)" ng-click="addSummaryEditor()" class="add-button ng-scope" aria-hidden="false" style="">ADD</a> -->
+    <a ng-click="resetBlooms()" class="sequence-reset-button">Reset</a>
+</div>

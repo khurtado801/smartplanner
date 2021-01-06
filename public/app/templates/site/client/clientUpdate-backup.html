@@ -1,0 +1,318 @@
+<div ng-include="'public/app/templates/site/partials/header.html'"></div>
+<div ng-include="'public/app/templates/site/partials/header_navigantion.html'"></div>
+<div ng-include="'public/app/templates/site/partials/message_display.html'"></div>
+<section class="wrapper" class="datepickerdemoBasicUsage" ng-controller="clientController" ng-init="getClientData()" ng-cloak  class="md-inline-form" layout="column">
+	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" ng-init="getClientUpdateData()">
+		<div class="panel-heading">
+			<h3 class="panel-title">Update Profile (client)   </h3>
+		</div>
+		<div class="panel-body" >
+			<form name="userForm" id="userForm" class="form-horizontal" ng-submit="userForm.$valid &&userDetails(user)" novalidate>
+			   
+					<div>
+						<div layout-gt-sm="row">
+							<md-input-container class="md-block" flex-gt-sm>
+								<label>First Name</label>
+								<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >First Name</md-tooltip>
+								<input ng-model="user.firstname" name="firstname" required>
+								<div ng-messages="userForm.firstname.$error" role="alert" multiple>
+									<div ng-message="required" class="my-message">You must enter your first name.</div>
+								</div>
+							</md-input-container>
+							<md-input-container class="md-block" flex-gt-sm>
+								<label>Last Name</label>
+								<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Last Name</md-tooltip>
+								<input ng-model="user.lastname" name="lastname" required>
+								<div ng-messages="userForm.lastname.$error" role="alert" multiple>
+									<div ng-message="required" class="my-message">You must enter your last name.</div>
+								</div>
+							</md-input-container>
+						</div>
+
+						<div layout-gt-sm="row">
+							<!-- <md-input-container class="md-block" flex-gt-sm> 
+					          	<label>Email</label> 
+					          	<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Email</md-tooltip>
+					          	<input required type="email" name="email" ng-model="user.email"
+							               minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+						        <div ng-messages="userForm.email.$error" role="alert">
+
+						         	<div ng-message-exp="['required', 'minlength', 'maxlength','pattern']">
+						            	Your email must be between 10 and 100 characters long and look like an e-mail address.
+						          	</div> 
+						          
+						        </div>
+					        </md-input-container> -->
+							 
+							<md-input-container class="md-block" flex-gt-sm>
+								<label>Phone Number</label>
+								<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Phone Number</md-tooltip>
+								<input ng-model="user.phone_number" name="phone_number" required ng-pattern="/^[0-9]{10}$/" md-maxlength="10" required>
+								<div ng-messages="userForm.phone_number.$error" role="alert" multiple>
+									 
+									<div ng-message-exp="['required','maxlength','pattern']" class="my-message">That doesn't look like a valid phone number use date format [0-9] and Max 10 digits.
+									</div>
+									 
+								</div>
+							</md-input-container>
+
+							 
+						  
+							<mdp-date-picker mdp-open-on-click  name="birth_date" mdp-placeholder="Select Birth Day"  mdp-format="YYYY-MM-DD" ng-model="user.birth_date" flex-gt-sm>
+								<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Select Birth Day</md-tooltip>
+								<div ng-messages="userForm.birth_date.$error" role="alert" multiple>
+									<div ng-message-exp="['required','format']">You must be enter your birth date and use date format YYYY-MM-DD</div>
+									 
+								</div>
+							</mdp-date-picker>
+						 
+
+							<md-input-container class="md-block" flex-gt-sm>
+								<label>Gender </label>
+								<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Select Gender</md-tooltip>
+								<md-select ng-model="user.gender"  name="gender" required>
+								<md-option ng-value="usergender.id" ng-repeat="usergender in usersgenders">{{ usergender.name }}</md-option>
+								</md-select>
+
+						  	 	<!-- <md-select placeholder="Gender"  style="min-width: 200px;">
+							      <md-option ng-selected="{{ usergender.name==selectedUser.name ? true:'' }}" ng-value="usergender" ng-repeat="usergender in usersgenders">{{usergender.name}}</md-option>
+							    </md-select>   -->
+								<!--  <select >
+								    <option ng-selected="{{ usersgenders.name==selectedUser.name ? true:'' }}" ng-value="usergender" ng-repeat="usergender in usersgenders">
+								    {{ usergender.name }}
+								    </option>
+								 </select> -->
+							</md-input-container>
+
+						</div>
+						
+						<!-- <div class="datepickerdemoBasicUsage">
+							<md-datepicker ng-model="user.birth_date" md-placeholder="Select Birth Day">
+								<div ng-messages="userForm.birth_date.$error" role="alert" multiple>
+									<div ng-message="required" class="my-message">You must enter a valid phone number.</div>
+								</div>
+							</md-datepicker>
+						</div> -->
+
+						
+
+						
+						
+						<div layout-gt-sm="row"  >
+							<md-input-container class="md-block" flex-gt-sm>
+								<label>Country </label>
+								<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Country</md-tooltip>
+								<md-select  ng-model="user.countryId" ng-change="getSelectedStates(user.countryId)" name="country" required>
+								<md-option ng-value="country.id" ng-repeat="country in countries">{{ country.name }}</md-option>
+								</md-select>
+
+								<div ng-messages="userForm.country.$error" role="alert" multiple>
+          							<div ng-message="required">You must select country</div>
+          						</div>
+							</md-input-container>
+
+							<!-- ng-if="user.countryId!="" ? GetSelectedState(user.countryId)" -->
+							<md-input-container class="md-block" flex-gt-sm >
+								<label>State</label>
+								<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >State</md-tooltip>
+								<md-select ng-model="user.stateId" ng-change="getSelectedCities(user.stateId)"  ng-disabled="!user.countryId">
+								<md-option ng-value="state.id" ng-repeat="state in states">{{ state.name }}</md-option>
+								</md-select>							
+							</md-input-container>
+
+							<md-input-container class="md-block" flex-gt-sm>
+								<label>Location</label>
+								<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Location</md-tooltip>
+								<md-select ng-model="user.locationId" ng-disabled="!user.countryId || !user.stateId">
+								<md-option ng-value="city.id" ng-repeat="city in cities">{{ city.name }}</md-option>
+								</md-select>							
+							</md-input-container>
+						</div>							
+
+						<div layout-gt-sm="row">
+							<md-input-container class="md-block" flex-gt-sm>
+								<label>Street</label>
+								<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Street</md-tooltip>
+								<input ng-model="user.street" name='street' required>
+								<div ng-messages="userForm.street.$error" role="alert" multiple>
+									<div ng-message="required" class="my-message">You must enter your street address.</div>
+								</div>
+							</md-input-container>
+
+							<md-input-container class="md-block" flex-gt-sm>
+								<label>Zipcode</label>
+								<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Zipcode</md-tooltip>
+								<input name="zipcode" ng-model="user.zipcode"
+								required ng-pattern="/^[0-9]{4}$/" md-maxlength="4">
+								<div ng-messages="userForm.zipcode.$error" role="alert" multiple> 
+									<div ng-message-exp="['required','maxlength','pattern']" class="my-message">That doesn't look like a valid zipcode its must be contain six digits only.
+									</div> 
+								</div>
+							</md-input-container>
+						</div>
+
+						<md-input-container class="md-block">
+							<label>Profile Description</label>
+							<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Profile Description</md-tooltip>
+							<textarea ng-model="user.profile_description" md-maxlength="500" rows="5" md-select-on-focus required ></textarea>
+							<div ng-messages="userForm.profile_description.$error" role="alert" multiple>
+								<div ng-message="required" class="my-message">You must have to describe your profile details.</div>
+							</div>
+						</md-input-container>
+
+						<!-- <label class="col-lg-2 control-label">Upload Profile Image</label>
+						<lf-ng-md-file-input lf-files="filesProgress" multiple progress ></lf-ng-md-file-input>
+
+						<label class="col-lg-2 control-label">Upload Portfolio</label>
+						<lf-ng-md-file-input lf-files="files08" lf-option="optoin08" lf-placeholder="Pick Image" lf-browse-label="Search" lf-remove-label="Delete" multiple drag preview ng-disabled="disabled06"></lf-ng-md-file-input> -->
+
+						<div class="form-group">
+						 <!-- 	<md-checkbox id="bankDetails" name="bankDetails" ng-model="user.bankDetail" /> -->
+							<label for="FirstName" class="col-lg-2">Other Details</label>
+						 
+						</div>
+
+						<div class="form-group" ng-if="user.bankDetail == true">
+							<div layout-gt-sm="row">
+								<md-input-container class="md-block" flex-gt-sm>
+									<label>Card Number</label>
+									<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Card Number</md-tooltip>
+									<input ng-model="user.cc_number" name="cc_number">
+								</md-input-container>
+
+								<md-input-container class="md-block" flex-gt-sm>
+									<label>Card Holder Name</label>
+									<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Card Holder Name</md-tooltip>
+									<input ng-model="user.cc_name" name="cc_name">
+								</md-input-container>						
+
+								<md-input-container class="md-block" flex-gt-sm>
+									<label>CVV Number</label>
+									<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >CVV Number</md-tooltip>
+									<input ng-model="user.cc_cvv"  name="cc_cvv">
+								</md-input-container>
+							</div>
+						</div>
+
+						<!-- <div class="form-group">
+							<md-checkbox id="otherDetails" name="otherDetails" ng-model="user.otherDetails" />
+							<label for="otherDetails" class="col-lg-2">Other Details</label>
+						</md-checkbox> -->
+				</div>
+
+				<div class="form-group" flex-gt-sm>  
+		 			<div class="">  
+						<div class="items" ng-repeat="portfolio_img in user.portfolio_images" style="float: left;">  
+						 	
+							<a href="javascript:void(0)" ng-click="" ><img ng-src="public/asset/userImages/thumb/{{portfolio_img}}" err-src="public/app/build/images/No-images.png" > 
+							</a> 
+							<!-- <md-icon md-svg-icon="public/app/build/images/circle-delete-trash.svg"
+							ng-click="image_remove()" ng-model="portfolio_img"></md-icon> -->
+							<input type="hidden" name="portfolio_img" ng-model="portfolio_img" /> 
+						</div>
+					</div>
+				</div>  
+
+				
+				
+
+				<div class="form-group" flex-gt-sm >
+					
+					 <div style="clear: both;">&nbsp;</div>
+					<lf-ng-md-file-input lf-files="files" name="file" multiple preview lf-option="option" progress></lf-ng-md-file-input> 
+					</div>
+
+					<div layout-gt-sm="row">
+						<md-input-container class="md-block" flex-gt-sm>
+							<label>Job Title</label>
+							<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Job Title</md-tooltip>
+							<input ng-model="user.job_title" name="job_title">			
+						</md-input-container>
+					</div>
+					 
+
+					<md-input-container class="md-block" flex-gt-sm>
+						<label>Qualification</label>
+						<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Qualification</md-tooltip>
+						<md-select ng-model="user.qualification">
+							<md-option ng-repeat="qualification in qualifications" value="{{qualification}}">
+								{{qualification.abbrev}}
+							</md-option>
+						</md-select>
+					</md-input-container>
+
+					<div layout-gt-sm="row">
+						<md-input-container class="md-block" flex-gt-sm>
+							<label>VAT Number</label>
+							<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >VAT Number</md-tooltip>
+							<input ng-model="user.vat_number" name="vat_number">
+						</md-input-container>
+
+						<md-input-container class="md-block" flex-gt-sm>
+							<label>Commercial Register Number</label>
+							<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Commercial Register Number</md-tooltip>
+							<input ng-model="user.commercial_register_number" name="commercial_register_number">
+						</md-input-container>
+					</div>					
+					<div layout-gt-sm="row">
+						<md-input-container class="md-block" flex-gt-sm>
+							<label>Invoice address</label>
+							<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Invoice address</md-tooltip>
+							<input ng-model="user.invoice_address"  name="invoice_address">
+						</md-input-container>
+
+						<md-input-container class="md-block" flex-gt-sm>
+							<label>Delivery address</label>
+							<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Delivery address</md-tooltip>
+							<input ng-model="user.delivery_address"  name="delivery_address">
+						</md-input-container>
+					</div>
+				</div>
+
+				<!-- <md-checkbox id="chnagePassword" name="chnagePassword" ng-model="user.changePassword" />
+					<label for="FirstName" class="col-lg-2">Change Password</label>
+					<div class="form-group" ng-show="user.changePassword">
+						<div layout-gt-sm="row">
+							<md-input-container class="md-block" flex-gt-sm>
+								<label>Password</label>
+								<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Password</md-tooltip>
+								<input ng-model="user.password" type="password" name="password" id="inputPassword" placeholder="Password" required minlength="6" >
+								<div ng-messages="userForm.password.$error" role="alert" multiple>
+									<div ng-message="required" class="my-message">You must enter your password.</div>									
+									<div ng-message="minlength" class="my-message">
+										That password contains minimum six charecters.
+									</div>
+								</div>
+							</md-input-container>
+
+							<md-input-container class="md-block" flex-gt-sm>
+								<label>Confirm Password</label>
+								<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Confirm Password</md-tooltip>
+								<input ng-model="user.confirmpassword" type="password" name="confirm_password" minlength="6" class="confirmpassword" required compare="user.password == user.confirm_password">
+								<div ng-messages="userForm.confirmpassword.$error" role="alert" multiple>
+									<div ng-message="required" class="my-message">Password confirmation is required.</div>									
+									<div ng-message="minlength" class="my-message">
+										That confirm password contains minimum six charecters.
+									</div>				
+								</div>
+							</md-input-container>
+						</div>
+					</div>
+				</md-checkbox> -->
+
+				<div class="form-group">
+				<input type="hidden" ng-model="user.user_id" name="user_id"  id="{{currentUser.id}}">
+				<md-button class="md-raised md-primary" type="submit"  ng-disabled="userForm.$invalid">Sumbit</md-button>
+					<!-- <div class="col-lg-10 col-lg-offset-2">
+						<input type="hidden" ng-model="authFormToken._token" >
+						<a class="btn btn-default" href="/">Cancel</a>
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</div> -->
+				</div> 
+	</div>
+</md-content>	
+</div>
+</form>
+</div>
+</section>
+<div ng-include="'public/app/templates/site/partials/footer.html'"></div>

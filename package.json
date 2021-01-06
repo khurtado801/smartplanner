@@ -1,0 +1,39 @@
+{
+  "name": "new-smartplanner-backend",
+  "version": "1.0.0",
+  "description": "[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework) [![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework) [![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework) [![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework) [![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)",
+  "main": "gulpfile.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/evolvededucator/smartplanner.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/evolvededucator/smartplanner#readme",
+  "dependencies": {
+    "@angular/core": "^2.4.10",
+    "angular": "^1.7.9",
+    "angular-animate": "^1.7.0",
+    "angular-aria": "^1.7.0",
+    "angular-credit-cards": "^3.1.8",
+    "angular-local-storage": "^0.7.1",
+    "angular-messages": "^1.7.2",
+    "angularjs-stripe-elements": "^1.0.1",
+    "checklist-model": "^1.0.0",
+    "jquery": "^3.4.1",
+    "jquery-mousewheel": "^3.1.13",
+    "malihu-custom-scrollbar-plugin": "^3.1.5",
+    "ng-dialog": "^1.4.0",
+    "popper.js": "^1.15.0",
+    "rxjs": "^5.5.12",
+    "wkhtmltopdf": "^0.3.4",
+    "zone.js": "^0.7.8"
+  },
+  "devDependencies": {}
+}

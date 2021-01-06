@@ -1,0 +1,201 @@
+<div ng-include="'public/app/templates/site/partials/header.html'"></div>
+<div ng-include="'public/app/templates/site/partials/header_navigantion.html'"></div>
+<div ng-include="'public/app/templates/site/partials/message_display.html'"></div>
+<section class="wrapper" ng-controller="clientController" ng-init="getPostProjectData()" ng-cloak  class="md-inline-form" layout="column">
+	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+		<div class="panel-heading">
+			<h3 class="panel-title">Post Project (Client)</h3>
+		</div>
+		<div class="panel-body" >
+			<form name="postProjectForm" id="postProjectForm" class="form-horizontal" ng-submit="postProjectForm.$valid && postProject(project)" novalidate>
+
+				<md-content layout-padding>
+					<div>			
+
+						<div layout-gt-sm="row">
+							<md-input-container class="md-block" flex-gt-sm>
+								<label>Project Title</label>
+								<md-tooltip  md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Project Title</md-tooltip>			
+								<input ng-model="project.job_title" name="job_title" required maxlength="255">
+								<div ng-messages="postProjectForm.job_title.$error" role="alert" multiple> 
+									<div ng-message="required" class="my-message">You must have to enter job title.</div>
+								</div>
+
+							</md-input-container>
+						</div>
+
+						<div layout-gt-sm="row">
+							<md-input-container class="md-block" flex-gt-sm>
+								<label>Project Sub Title</label>
+								<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Project Sub Title</md-tooltip>	
+								<input ng-model="project.job_subtitle" name="job_subtitle" required maxlength="255">
+								<div ng-messages="postProjectForm.job_subtitle.$error" role="alert" multiple> 
+									<div ng-message="required" class="my-message">You must have to enter job sub title.</div>
+								</div>			
+							</md-input-container>
+						</div>
+
+						<div layout-gt-sm="row">
+							<md-input-container class="md-block" flex-gt-sm>
+								<label>Project Category</label>
+								<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Project Category</md-tooltip>
+								<md-select ng-model="project.job_category" name="job_category" multiple="true" required>
+									<md-option ng-repeat="category in categories" ng-value="{{category.id}}">
+										{{category.name}}
+									</md-option>								
+								</md-select>
+
+								<div ng-messages="postProjectForm.job_category.$error" role="alert" multiple> 
+									<div ng-message="required" class="my-message">You must have to select your project related category.</div>
+								</div>	
+							</md-input-container>
+
+							<md-input-container class="md-block" flex-gt-sm>
+								<label>Skills</label>
+								<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Skills</md-tooltip>
+								<md-select ng-model="project.job_skills" multiple="true" name="job_skills" required>
+									<md-option ng-repeat="skill in skills" ng-value="{{skill.id}}">	
+										{{skill.skill}}
+									</md-option>								
+								</md-select>
+								<div ng-messages="postProjectForm.job_skills.$error" role="alert" multiple> 
+									<div ng-message="required" class="my-message">You must have to selcet your project related skills.</div>
+								</div>
+							</md-input-container>
+						</div>
+						
+						<md-input-container class="md-block">
+							<label>Project Description</label>
+							<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Project Description</md-tooltip>
+							<textarea ng-model="project.job_description" rows="5" md-select-on-focus required ></textarea name="job_description">
+							<div ng-messages="postProjectForm.job_description.$error" role="alert" multiple>
+								<div ng-message="required" class="my-message">You must have to enter project description.</div>
+							</div>
+						</md-input-container>
+
+						<md-input-container class="md-block">
+							<label>Project Comments</label>
+							<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Project Comments</md-tooltip>
+							<textarea ng-model="project.job_comments" rows="5" md-select-on-focus required ></textarea name="job_comments">
+							<div ng-messages="postProjectForm.job_comments.$error" role="alert" multiple>
+								<div ng-message="required" class="my-message">You must have to enter project commants.</div>
+							</div>
+						</md-input-container>
+
+						<div layout-gt-sm="row">
+							<md-input-container class="md-block" flex-gt-sm>
+								<label>Project Cost / Range in CHF ( Minimum ) </label>
+								<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Project Cost / Range in CHF ( Minimum )</md-tooltip>				
+								<input name="job_cost_min" ng-model="project.job_cost_min"
+								required ng-pattern="/^\d+$/" md-maxlength="5" maxlength="5">
+								<div ng-messages="postProjectForm.job_cost_min .$error" role="alert" multiple>
+									<div ng-message="required" class="my-message">You must enter project cost.</div>
+									<div ng-message="pattern" class="my-message">That doesn't look like a valid project cost.
+									</div>
+									<div ng-message="md-maxlength" class="my-message">
+										project cost must be contain up to maximum upto five numbers only.
+									</div>
+								</div>			
+							</md-input-container>
+
+							<md-input-container class="md-block" flex-gt-sm>
+								<label>Project Cost / Range in CHF ( Maximum ) </label>
+								<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Project Cost / Range in CHF ( Maximum )</md-tooltip>				
+								<input name="job_cost_max" ng-model="project.job_cost_max "
+								required ng-pattern="/^\d+$/" md-maxlength="5" maxlength="5">
+								<div ng-messages="postProjectForm.job_cost_max.$error" role="alert" multiple>
+									<div ng-message="required" class="my-message">You must enter project cost.</div>
+									<div ng-message="pattern" class="my-message">That doesn't look like a valid project cost.
+									</div>
+									<div ng-message="md-maxlength" class="my-message">
+										project cost must be contain up to maximum upto five numbers only.
+									</div>
+								</div>			
+							</md-input-container>
+						</div>
+
+						<div layout-gt-sm="row">
+							<md-input-container class="md-block" flex-gt-sm>
+								<label>Project Search Keywords</label>
+								<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Project Search Keywords</md-tooltip>	
+								<input ng-model="project.job_keywords" name="job_keywords " required>
+								<div ng-messages="postProjectForm.job_keywords.$error" role="alert" multiple>
+									<div ng-message="required" class="my-message">You must enter job search keywords.</div>
+								</div>
+							</md-input-container>
+
+							<mdp-date-picker mdp-open-on-click required name="job_stattime" mdp-placeholder="Project Beginning Time" mdp-format="DD/MM/YYYY" ng-model="project.job_stattime">
+								<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Project Beginning Time</md-tooltip>
+								<div ng-messages="postProjectForm.job_stattime.$error" role="alert" multiple>
+									<div ng-message="required">You must enter your project start time</div>
+									<div ng-message="format">This is invalid date format use date format DD/MM/YYYY</div>
+								</div>
+							</mdp-date-picker>
+
+							<mdp-date-picker mdp-open-on-click required name="job_endtime" mdp-placeholder="Project End Time" mdp-format="DD/MM/YYYY" ng-model="project.job_endtime">
+								<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Project End Time</md-tooltip>
+								<div ng-messages="postProjectForm.job_endtime.$error" role="alert" multiple>
+									<div ng-message="required">You must enter your project end time</div>
+									<div ng-message="format">This is invalid date format use date format DD/MM/YYYY</div>
+								</div>
+							</mdp-date-picker>
+						</div>
+
+						<div layout-gt-sm="row">
+							<mdp-date-picker mdp-open-on-click required name="job_visible_duration" mdp-placeholder="Project Visible Upto" mdp-format="DD/MM/YYYY" ng-model="project.job_visible_duration">
+								<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Project Visible Upto</md-tooltip>
+								<div ng-messages="postProjectForm.job_visible_duration.$error" role="alert" multiple>
+									<div ng-message="required">You must enter your job visible duration date</div>
+									<div ng-message="format">This is invalid date format use date format DD/MM/YYYY</div>
+								</div>
+							</mdp-date-picker>
+
+							<md-input-container class="md-block" flex-gt-sm>
+								<label>Project is Available For</label>
+								<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Project is Availble For</md-tooltip>
+								<md-select ng-model="project.job_availble_for" name="job_availble_for" required>
+									<md-option ng-repeat="jobAvlFor in jobsAvlFor" value="{{jobAvlFor.abbrev}}">{{jobAvlFor.abbrev}}
+									</md-option>
+								</md-select>
+								<div ng-messages="postProjectForm.job_availble_for.$error" role="alert" multiple> 
+									<div ng-message="required" class="my-message">You must have to select this project is available for.</div>
+								</div>
+							</md-input-container>
+
+							<md-input-container class="md-block" flex-gt-sm>
+								<label>Job in Stage</label>
+								<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Job in Stage</md-tooltip>
+								<md-select ng-model="project.job_stage" name="job_stage" required>	
+									<md-option ng-repeat="jobAvlFor in jobStage" value="{{jobAvlFor.abbrev}}">{{jobAvlFor.abbrev}}
+									</md-option>
+								</md-select>
+
+								<div ng-messages="postProjectForm.job_stage.$error" role="alert" multiple> 
+									<div ng-message="required" class="my-message">You must have to select your project in stage.</div>
+								</div>
+							</md-input-container>
+						</div>						
+							
+						<md-checkbox name="terms_conditions" ng-model="project.terms_conditions" />
+							<label>Accept General Business Terms & Conditions.</label>
+							<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Accept General Business Terms & Conditions</md-tooltip>
+							<div ng-messages="postProjectForm.terms_conditions.$error" role="alert" multiple>
+								<div ng-message="required">You must have to accept general business terms.
+							</div>
+						</md-checkbox>
+						
+
+						<md-input-container class="md-block" flex-gt-sm>
+							<div class="col-lg-10 col-lg-offset-2">
+								<input type="hidden" ng-model="authFormToken._token" >
+								<a class="btn btn-default" href="/">Cancel <md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Cancel</md-tooltip></a>
+								<md-button class="md-primary" type="submit" class="btn btn-primary">Submit <md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Submit</md-tooltip></md-button>
+							</div>
+						</md-input-container>
+					</div>
+				</md-content>	
+			</div>
+		</form>
+	</div>
+</section>
+<div ng-include="'public/app/templates/site/partials/footer.html'"></div>

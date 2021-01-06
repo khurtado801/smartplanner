@@ -1,0 +1,186 @@
+<div>
+    <uib-tabset active="active">
+        <!-- Select tab Start -->
+        <uib-tab index="0" heading="Learning Targets" ng-class style="margin-top: 5px">
+            <div class="first-tab scrollbar-dynamic" data-jquery-scrollbar="jqueryScrollbarOptions">
+                <form class="select-tab">
+                    <div class="form-group custom_checkbox" ng-repeat="n in lesson_data.keyconcept_details">
+                        <input type="checkbox" ng-disabled="modi_re" id="accept_{{n.kc_id}}" value="{{n.kc_id}}"
+                            ng-model="key_concepts.selected" ng-click="getLearningTarget(n.kc_id,key_concepts.selected)"
+                            ng-checked="checkItem(n.kc_id)">
+                        <label data-toggle="collapse" data-target="#collapse{{n.kc_id}}"
+                            for="accept_{{n.kc_id}}"><span>{{n.keyconcept_name}}</span></label>
+                        <div id="collapse{{n.kc_id}}" ng-class="checkItem(n.kc_id) ? 'in' : 'out' "
+                            class="left-sub-concept collapse">
+                            <div class="sub-concept-1" ng-repeat="target in n.target_list">
+                                <input type="checkbox" ng-disabled="modi_re" ng-model="user.selected"
+                                    ng-click="toggleSelection(target.learningtargets_id,user.selected)"
+                                    id="target_{{target.learningtargets_id}}" value="{{target.learningtargets_id}}"
+                                    ng-checked="checkLearningItem(target.learningtargets_id)">
+                                <label for="target_{{target.learningtargets_id}}"><span>
+                                        {{target.learningtargets_name}}</span></label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </uib-tab>
+        <!-- Select tab END -->
+
+        <!-- Result tab Start -->
+
+        <uib-tab index="1" ng-click="loadKeyconcept()" disable="disabletab" heading="Framework" style="margin-top: 5px">
+
+            <div class="second-tab scrollbar-dynamic" data-jquery-scrollbar="jqueryScrollbarOptions">
+                <div class="toolbar-box-result bg-color-1">
+                    <div class="result-title">
+                        <h2>Summary</h2>
+                        <span ng-hide="loadresult">
+                            <a ng-show="summary_flag" ng-if="checkurl()" href="javascript:void(0)"
+                                class="add-button disable-link">ADD</a>
+                            <a ng-show="summary_flag" ng-if="!checkurl()" href="javascript:void(0)"
+                                ng-click="addSummaryEditor()" class="add-button">ADD</a>
+                        </span>
+                    </div>
+                    <div ng-show="loadresult" class="group">
+                        <h4 class="empty_load"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></h4>
+                    </div>
+                    <div ng-hide="loadresult" class="no_data">
+                        <div ng-hide="summary_flag">
+                            <h4>Content not available.</h4>
+                        </div>
+                    </div>
+                    <div ng-hide="loadresult" class="group" ng-repeat="(key, value) in summaries | groupBy: 'kc_name'">
+                        <h4 class="kc_name">{{key}}</h4>
+                        <div ng-hide="{{summary.display}}" class="result-discription"
+                            ng-repeat="summary in value track by $index">
+                            <h4><i>{{summary.name}}</i></h4>
+                            <p>{{summary.desc| limitTo: 200 | htmlToPlaintext}}{{summary.desc.length > 200 ? '...' : ''}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="toolbar-box-result bg-color-1">
+                    <div class="result-title">
+                        <h2>Standards</h2>
+                        <span ng-hide="loadresult">
+                            <a ng-show="standardarr_flag" ng-if="checkurl()" href="javascript:void(0)"
+                                class="add-button disable-link">ADD</a>
+                            <a ng-show="standardarr_flag" ng-if="!checkurl()" href="javascript:void(0)"
+                                class="add-button" ng-click="addStandardsEditor()">ADD</a>
+                        </span>
+                    </div>
+                    <div ng-show="loadresult" class="group">
+                        <h4 class="empty_load"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></h4>
+                    </div>
+                    <div ng-hide="loadresult" class="no_data">
+                        <div ng-hide="standardarr_flag">
+                            <h4>Content not available.</h4>
+                        </div>
+                    </div>
+                    <div ng-hide="loadresult" class="group"
+                        ng-repeat="(key, value) in standardarr | groupBy: 'kc_name'">
+                        <h4 class="kc_name">{{key}}</h4>
+                        <div ng-hide="{{standard.display}}" class="result-discription"
+                            ng-repeat="standard in value track by $index">
+                            <h4><i>{{standard.name}}</i></h4>
+                            <p>{{standard.desc| limitTo: 200 | htmlToPlaintext}}{{standard.desc.length > 200 ? '...' : ''}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="toolbar-box-result bg-color-1">
+                    <div class="result-title">
+                        <h2>Essential Questions</h2>
+                        <span ng-hide="loadresult">
+                            <a ng-show="essential_questions_flag" ng-if="checkurl()" href="javascript:void(0)"
+                                class="add-button disable-link">ADD</a>
+                            <a ng-show="essential_questions_flag" ng-if="!checkurl()" href="javascript:void(0)"
+                                class="add-button" ng-click="addEssentialEditor()">ADD</a>
+                        </span>
+                    </div>
+                    <div ng-show="loadresult" class="group">
+                        <h4 class="empty_load"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></h4>
+                    </div>
+                    <div ng-hide="loadresult" class="no_data">
+                        <div ng-hide="essential_questions_flag">
+                            <h4>Content not available.</h4>
+                        </div>
+                    </div>
+                    <div ng-hide="loadresult" class="group"
+                        ng-repeat="(key, value) in essential_questions | groupBy: 'kc_name'">
+                        <h4 class="kc_name">{{key}}</h4>
+                        <div ng-hide="{{essential_question.display}}" class="result-discription"
+                            ng-repeat="essential_question in value">
+                            <h4><i>{{essential_question.name}}</i></h4>
+                            <p>{{essential_question.desc| limitTo: 200 | htmlToPlaintext}}{{essential_question.desc.length > 200 ? '...' : ''}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="toolbar-box-result bg-color-1">
+                    <div class="result-title">
+                        <h2>Core Ideas</h2>
+                        <span ng-hide="loadresult">
+                            <a ng-show="core_ideas_flag" ng-if="checkurl()" href="javascript:void(0)"
+                                class="add-button disable-link">ADD</a>
+                            <a ng-show="core_ideas_flag" ng-if="!checkurl()" href="javascript:void(0)"
+                                class="add-button" ng-click="addCoreIdeasEditor()">ADD</a>
+                        </span>
+                    </div>
+                    <div ng-show="loadresult" class="group">
+                        <h4 class="empty_load"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></h4>
+                    </div>
+                    <div ng-hide="loadresult" class="no_data">
+                        <div ng-hide="core_ideas_flag">
+                            <h4>Content not available.</h4>
+                        </div>
+                    </div>
+                    <div ng-hide="loadresult" class="group" ng-repeat="(key, value) in core_ideas | groupBy: 'kc_name'">
+                        <h4 class="kc_name">{{key}}</h4>
+                        <div ng-hide="{{core_idea.display}}" class="result-discription" ng-repeat="core_idea in value">
+                            <h4><i>{{core_idea.name}}</i></h4>
+                            <p>{{core_idea.desc| limitTo: 200 | htmlToPlaintext}}{{core_idea.desc.length > 200 ? '...' : ''}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="toolbar-box-result bg-color-1">
+                    <div class="result-title">
+                        <h2>Vocabulary</h2>
+                        <span ng-hide="loadresult">
+                            <a ng-show="vocabulary_flag" ng-if="checkurl()" href="javascript:void(0)"
+                                class="add-button disable-link">ADD</a>
+                            <a ng-show="vocabulary_flag" ng-if="!checkurl()" href="javascript:void(0)"
+                                class="add-button" ng-click="addVocabularyEditor()">ADD</a>
+                        </span>
+                    </div>
+                    <div ng-show="loadresult" class="group">
+                        <h4 class="empty_load"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></h4>
+                    </div>
+                    <div ng-hide="loadresult" class="no_data">
+                        <div ng-hide="vocabulary_flag">
+                            <h4>Content not available.</h4>
+                        </div>
+                    </div>
+                    <div ng-hide="loadresult" class="group"
+                        ng-repeat="(key, value) in vocabularies | groupBy: 'kc_name'">
+                        <h4 class="kc_name">{{key}}</h4>
+                        <div ng-hide="{{vocabulary.display}}" class="result-discription"
+                            ng-repeat="vocabulary in value track by $index">
+                            <h4><i>{{vocabulary.name}}</i></h4>
+                            <p>{{vocabulary.desc| limitTo: 200 | htmlToPlaintext}}{{vocabulary.desc.length > 200 ? '...' : ''}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </uib-tab>
+        <!--  Result tab end -->
+
+        <!-- lesson sequence tab,  on click show lesson sequence modal template lessonSequenceModal.html -->
+        <uib-tab index="2" class="app-modal-window" ng-click="showForm()" heading="Lesson Sequence" ng-class
+            style="margin-top: 5px">
+        </uib-tab>
+    </uib-tabset>
+</div>

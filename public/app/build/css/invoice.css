@@ -1,0 +1,39 @@
+.invoice-box { max-width: 740px; margin: 65px auto; padding: 30px; border: 1px solid #eee; box-shadow: 0 0 10px rgba(0, 0, 0, .15); font-size: 16px; line-height: 24px; font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; color: #555; }
+.invoice-box table { width: 100%; line-height: inherit; text-align: left; }
+.invoice-box table td { padding: 5px; vertical-align: top; }
+.invoice-box table tr td:nth-child(2) { text-align: right; }
+.invoice-box table tr.top table td { padding-bottom: 20px; }
+.invoice-box table tr.top table td.title { font-size: 45px; line-height: 45px; color: #333; }
+.invoice-box table tr.information table td { padding-bottom: 40px; }
+.invoice-box table tr.heading td { background: #eee; border-bottom: 1px solid #ddd; font-weight: bold; }
+.invoice-box table tr.details td { padding-bottom: 20px; }
+.invoice-box table tr.item td { border-bottom: 1px solid #eee; }
+.invoice-box table tr.item.last td { border-bottom: none; }
+.invoice-box table tr.total td:nth-child(2) { border-top: 2px solid #eee; font-weight: bold; }
+/*********** invoice form ************/
+.invoice-box .row { margin: 0; }
+.invoice_heading { border-bottom: 4px double #eee; float: left; padding-bottom: 14px; width: 100%; }
+.invoice_heading .logo { float: left; width: 100%; }
+.invoice_heading .logo img { margin-top: 48px; }
+ul.invoice_client_info { background-color: #f6f6f6; padding: 12px; float:right; }
+.invoice_client_info > li { list-style: none; margin-bottom: 7px; }
+.invoice_client_info > li > span { float: left; font-weight: bold; min-width: 85px; }
+.invoice_body { float: left; width: 100%; margin-top: 15px; }
+.invoice_body .row { margin: 0; }
+.invoice_title { background-color: #333; padding: 10px 15px; }
+.invoice_title h3 { color: #fff; font-size: 20px; margin: 0; }
+.invoice_description { float: left; width: 100%; }
+.invoice_description .row { padding: 10px 15px; }
+.invoice_description h4 { font-size: 16px; margin: 0; color: #333; }
+.invoice_total { border-top: 1px dashed #ccc; float: right; margin-top: 30px; width: 100%; }
+.invoice_total h3 { color: #333; font-size: 20px; margin: 10px 0 0; text-align: left; }
+.invoice_total h3 span { font-weight: bold; }
+.invoice_description .row:nth-child(2n+1) { background-color: #f6f6f6; }
+ @media only screen and (max-width: 767px) {
+.invoice-box table tr.top table td { width: 100%; display: block; text-align: center; }
+.invoice-box table tr.information table td { width: 100%; display: block; text-align: center; }
+.invoice-box { border-width: 3px; box-shadow: none; max-width: 100%; padding: 15px; }
+.invoice_heading .no-padding-left, .invoice_heading .no-padding-right { padding: 0; }
+.invoice_heading .logo img { margin-bottom: 22px; margin-top: 18px; }
+.invoice_total h3 { text-align: right; }
+}

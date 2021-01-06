@@ -1,0 +1,153 @@
+<div ng-include="'public/app/templates/site/partials/header.html'"></div>
+
+<section class="innerContainer" ng-controller="freelancerController" ng-init="getDashboardData()">
+
+	
+	<div class="container">
+		<div ng-include="'public/app/templates/site/partials/message_display.html'"></div>
+		<div ng-if="loading == true" id="loader"></div>	
+		<section class="col-2-right-layout ng-scope">
+			<section class="container clearfix">
+				<div class="panel-heading">
+					<h3 class="panel-title">Dashboard (Freelancer)</h3>
+				</div>
+				<ul>
+			        <li class="first"><a href="#freelancer/profile/changePassword">Change Password</a></li>
+			        <li class="first"><a href="#freelancer/profile/payment">Bank Account Details</a></li>
+			        <li class="first"><a href="#freelancer/profile/companyDetails">Company Details</a></li>
+			        <li class="first"><a href="#freelancer/profile/update">Edit Profile</a></li>
+			        <li class="first"><a href="#/freelancer/profile/companyDetails">Company Details</a></li>
+		        </ul>
+	        </section>
+
+	        <!-- {{projectListData}} -->
+	        <div layout-gt-sm="row">
+		        <md-input-container class="md-block" flex-gt-sm>
+					<label>Project Search</label>					
+					<input ng-model="search.text"></label>	
+				</md-input-container>				
+				<md-input-container class="md-block" flex-gt-sm>
+					<label>Project Category</label>
+					<md-select ng-model="search.job_category" name="job_category" multiple="true" required>
+						<md-option ng-repeat="category in categories">
+							{{category.name}}
+						</md-option>								
+					</md-select>
+				</md-input-container>
+				<!-- <md-input-container class="md-block" flex-gt-sm>
+					<label>Location</label>
+					<md-select ng-model="user.cityId" name="cityId">
+					<md-option ng-value="city.id" ng-repeat="city in cities">{{ city.name }}</md-option>
+					</md-select>							
+				</md-input-container> -->
+
+				<div ng-controller="freelancerController as ctrl" layout="column" ng-cloak>
+				  <md-content class="md-padding">				     
+				      <div layout-gt-sm="row">				      
+				        <md-autocomplete flex
+				            md-input-name="autocompleteField"
+				            md-input-minlength="2"
+				            md-input-maxlength="25"
+				            md-no-cache="ctrl.noCache"
+				            md-selected-item="ctrl.selectedItem"
+				            md-search-text="ctrl.searchText"
+				            md-items="item in ctrl.querySearch(ctrl.searchText)"
+				            md-item-text="item.display"
+				            md-require-match
+				            md-floating-label="Location">
+				          <md-item-template>
+				            <span md-highlight-text="ctrl.searchText">{{item.display}}</span>
+				          </md-item-template>
+				          <div ng-messages="searchForm.autocompleteField.$error" ng-if="searchForm.autocompleteField.$touched">				            
+				            <div ng-message="md-require-match">Please select an existing skills.</div>
+				            <div ng-message="minlength">Your entry is not long enough.</div>
+				            <div ng-message="maxlength">Your entry is too long.</div>
+				          </div>
+				        </md-autocomplete>
+				      </div>				    
+				  </md-content>
+				</div>      			
+			</div>
+
+			<h3>Skills</h3>
+			<div layout-gt-sm="row" style="width:40%;">
+			<br>
+		        <md-input-container class="md-block" flex-gt-sm>
+					<md-select ng-model="search.job_skills" multiple="true" name="job_skills" required>
+						<md-option ng-repeat="skill in skills" ng-value="{{skill.id}}">	
+							{{skill.skill}}
+						</md-option>								
+					</md-select>
+				</md-input-container>
+			</div>
+
+			<h3>Worker Type</h3>			
+			<md-input-container class="md-block" flex-gt-sm>				
+			    <md-radio-group ng-model="search.job_availble_for"><br>
+			   		<md-radio-button value="">All Worker</md-radio-button>
+					<md-radio-button value="Freelancer">Freelancer</md-radio-button>
+					<md-radio-button value="Company"> Company </md-radio-button>
+					<md-radio-button value="Company,Freelancer">Both</md-radio-button>
+			    </md-radio-group>
+		    </md-input-container>
+
+		    <h3>Hourly Rate</h3>
+			<br>
+			<md-slider ng-model="search.job_cost_min" min="0" max="9999">
+			</md-slider>
+			<md-slider md-invert ng-model="search.job_cost_max" step="10" min="0" max="99999">
+			</md-slider>
+
+			<div layout-gt-sm="row">
+				<md-input-container class="md-block" flex-gt-sm>
+					<label>Price Range Minimum</label>
+					<input  type="number">	
+				</md-input-container>
+				<md-input-container class="md-block" flex-gt-sm>
+					<label>Price Range Maximum</label>
+					<input  type="number"></label>
+				</md-input-container>
+		    </div>
+		    </section>
+
+	        <div flex>
+	        	<md-toolbar layout="row" class="md-hue-3">
+	        		<div class="md-toolbar-tools">
+	        			<span>Current Posted Projects</span>
+	        		</div>
+	        	</md-toolbar>	        
+	        	<md-content>        				
+	        		<md-list class="md-dense" flex >	
+	        			
+	        			<md-list-item class="md-3-line" dir-paginate="projectData in projectListData | itemsPerPage: 5 | filter:search.job_availble_for | filter:search.job_cost_min | filter:search.job_cost_max | filter:search.job_skills | filter:search.text ">
+	        				
+	        				<div class="md-list-item-text" layout="column">
+	        					<h3>
+	        						<a href="#/freelancer/project/view/id/{{projectData.id}}">{{projectData.job_title}}</a>
+	        					</h3>
+	        					
+	        					<p ng-repeat="(key, value) for projectData in projectData.job_images">{{projectData.job_images}}</p>
+	        				
+	        					<p>{{projectData.job_description}}</p>
+	        					<p>{{projectData.job_cost_min}} - {{projectData.job_cost_max}} CHF</p>
+	        					
+	        					<!-- <p ng-init="getImagesByArray(projectData.job_images)">
+	        						<span ng-repeat="JI in jobImages">{{JI}}</span>
+	        					</p>
+ -->
+	        					 
+	        					<p ng-init="getSkillsByArray(projectData.job_skills)">
+	        						<span ng-repeat="js in jobSkills">{{js.skill}}</span>
+	        					</p>	        				
+	        				</div>	        				
+	        			</md-list-item>
+	        			<md-divider ></md-divider>
+	        		</md-list>
+	        		<dir-pagination-controls></dir-pagination-controls>
+	        	</md-content>
+	        </div>
+        </section>
+	</div>
+</section>
+<div ng-include="'public/app/templates/site/partials/footer.html'"></div>
+

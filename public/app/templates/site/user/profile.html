@@ -1,0 +1,71 @@
+ <!-- ng-init="getHomepageData()" --> 
+<div ng-include="'public/app/templates/site/partials/header.html'"></div>
+<div ng-include="'public/app/templates/site/partials/header_navigantion.html'"></div>
+<div ng-include="'public/app/templates/site/partials/message_display.html'"></div>
+	<section class="col-2-right-layout" ng-controller="authController" ng-init="getFormToken()" >
+		<section class="container clearfix"  >
+			 
+
+			<div class="cat-main" ng-controller="userController">
+				<div class="categories topspace20">
+					<div class="gray-title">
+						<h2>Current Projects {{currentUser.firstname}} </h2>
+					</div>
+				</div>
+
+				<div class="categories-list imageitem" >
+					<ul>
+						<li><img src="public/app/build/images/categories/image1.jpg" alt=""/>
+							<div class="categorie-img-title"><a href="#/productlist?dept=Groceries">Iphone /Andriod</a></div>
+						</li>
+						<li><img src="public/app/build/images/categories/image2.jpg" alt=""/>
+							<div class="categorie-img-title"><a href="#/productlist?dept=Books and Magazines">Photoshop</a></div>
+						</li>
+						<li><img src="public/app/build/images/categories/image3.jpg" alt=""/>
+							<div class="categorie-img-title"><a href="#/productlist?dept=Men's Wear">Web Design</a></div>
+						</li>
+						<li><img src="public/app/build/images/categories/image4.jpg" alt=""/>
+							<div class="categorie-img-title"><a href="#/productlist?dept=Automotive">Search Engine</a></div>
+						</li>
+						<li><img src="public/app/build/images/categories/electronics.jpg" alt=""/>
+							<div class="categorie-sale"><img src="public/app/build/images/sale_image.png" alt=""/></div>
+							<div class="categorie-img-title"><a href="#/productlist?dept=Electronics">Social Media</a></div>
+						</li>
+						<li><img src="public/app/build/images/categories/image6.jpg" alt=""/>
+							<div class="categorie-img-title"><a href="#/productlist?dept=Beauty">Content Writer</a></div>
+						</li>
+					</ul>
+				</div>
+			</div>  
+
+
+<div ng-controller="globalController">
+      <p>{{ 'HEADLINE' | translate }}</p>
+      <p>{{ 'PARAGRAPH' | translate }}</p>
+    
+      <p translate>PASSED_AS_TEXT</p>
+      <p translate="PASSED_AS_ATTRIBUTE"></p>
+      <p translate>{{ 'PASSED_AS_INTERPOLATION' }}</p>
+      <p translate="{{ 'PASSED_AS_INTERPOLATION' }}"></p>
+      <p translate="VARIABLE_REPLACEMENT" translate-values="{ name: 'PascalPrecht' }"></p>
+    
+      <button ng-click="changeLanguage('de')" translate="BUTTON_LANG_DE"></button>
+      <button ng-click="changeLanguage('en')" translate="BUTTON_LANG_EN"></button>
+
+</div>
+<script>
+setTimeout(function(){ 
+	$("#homeBanner").owlCarousel({     
+		navigation : false,
+		items : 1,
+		autoPlay : true,          
+	});  
+},300);
+
+
+</script>
+
+
+</section>
+</section>
+<div ng-include="'public/app/templates/site/partials/footer.html'"></div>

@@ -1,0 +1,53 @@
+<div id="dialog">
+    <span subcontrol="dialog" controlinit="bubbleOn:refreshrights;"></span>
+    <div class="dt_ex_d">
+        <div class="dt_ex_d_title">
+            <span>File Type Permissions</span>
+            <div subcontrol="closebutton" class="smallbutton close_dialog_icon" style="float:right;"></div>
+        </div>
+        <div class="dt_ex_d_dbody" control="recordgroup" controlinit="mode:addremove;mods:matchrecorditemcbfields;modsMatchFieldName:allow_edit">
+            <div class="dt_ex_d_tableheader">
+                <div class="hunk col_c">
+                    <input class="head_cb" type="checkbox" subcontrol="selectall" />
+                    <span class="head_lbl">Give Rights</span>
+                </div>
+                <div class="hunk col_c">
+                    <input class="head_cb" type="checkbox" subcontrol="allow_edit" />
+                    <span class="head_lbl">Allow Edit</span>
+                </div>
+                <div class="hunk col_d"><span>User</span></div>
+            </div>
+
+            <div class="dt_ex_d_table" style="height:288px;overflow:auto;">
+                <JWRepeat>
+                    <div class="rgrp" control="recorditem" controlinit="localCache:true;mods:toggleeditwithview;modsToggleField:allow_edit;modsEditCacheValue:allowEdit" title="<JWField @help_text />">
+                        <input class="col_c" type="checkbox" subcontrol="indicator" <JWCond @sub_2_ldatype_id NEQ null> checked </JWCond> />
+                        <span control="record" controlinit="recordType:sub_2_ldatype;alwaysSave:true">
+                            <input type="hidden" control="textbox" controlinit="fieldName:sub_2_ldatype_id"
+                                value="<JWField @sub_2_ldatype_id />" />
+                            <input type="hidden" control="textbox" controlinit="fieldName:ldatype_id"
+                                value="<JWField @ldatype_id />" />
+                            <input type="hidden" control="textbox" controlinit="fieldName:sub_id"
+                                value="<JWField @sub_id />" />
+                            <div class="hunk col_c" style="padding-left: 29px;" control="checkbox"
+                                controlinit="fieldName:allow_edit;cacheName:allowEdit;fieldValue:<JWField @allow_ldatype_edit />">
+                                <input type="checkbox" control="checkbox"
+                                    controlinit="fieldName:allow_edit;fieldValue:<JWField @allow_edit />;" "<JWCond @allow_edit EQ Y>"
+                                    checked "</JWCond>" />
+                            </div>
+                            <div class="hunk col_d"><span>
+                                    <JWField @user_name /></span>
+                    </div>
+                    </span>
+            </div>
+            </JWRepeat>
+        </div>
+    </div>
+    <div class="toolbar2">
+        <div class="toolbutton2 fr" control="actionbutton" controlinit="action:save,refreshldatype,close;">
+            <div class="toolimage2 save_exit_icon"></div>
+            <div class="tooltext2">Save</div>
+        </div>
+    </div>
+</div>
+</div>

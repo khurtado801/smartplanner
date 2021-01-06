@@ -1,0 +1,72 @@
+ 
+	<section class="col-1-layout">
+		<section class="container clearfix" class="cartpage" ng-init="getCartDetails()">
+			<div ng-if="loading == true" id="loader"></div>	
+			<div class="col-main cart" id="shoping_cart">
+				<div class="breadcome"> <a href="/">Home</a>/<span class="currant">Shopping Cart </span> </div>
+				<div class="page-title category-title">
+					<h1>Cart Items Dev</h1>
+				</div>			
+
+				<section class="shoping_cart_table" ng-if="cartData != 'notFound' ">
+					<div class="fullwidth_block">
+						<a href="javascript:void(0)" class="button checkout_btn float_r" ng-click="notAllowed()">Proceed to Checkout</a>
+						<a href="/" class="button black_bt float_l">Continue Shopping</a>
+					</div>
+					<div class="cart_table cart_title_bg">
+						<div class="delete">&nbsp;</div>
+						<div class=" items ">Items</div>
+						<div class=" edit ">Status </div>
+						<div class=" qty ">Qty </div>
+						<div class=" item_price "> Item Price </div>
+						<div class=" item_total ">Item total</div>
+					</div>
+					<div class="cart_table cart_title_brd" ng-repeat="(key, value) in cartData">
+						<div class=" delete ">
+							<a ng-click="deleteProduct(cartData[key].upc, cartData[key])" href="javascript:void(0)" class="btn-remove2" title="Delete">&nbsp;
+							</a>
+						</div>
+						<div class=" items">
+							<a href="javascript:void(0)" ng-click="storeDataIntoStorage(cartData[key] , cartData[key].upc)" ><img ng-src="{{cartData[key].thumbnailImage}}" err-src="/build/images/No-images.png" ></a>
+							<p>{{cartData[key].name}}</p>
+						</div>
+						<div class=" edit ">
+							<a href="javascript:void(0)" title="Edit" ng-click="notAllowed()">
+								<img src="/build/images/edit.png">
+							</a>
+							<!-- <a href="#">
+								<img src="/build/images/trash.png">
+							</a> -->
+						</div>
+						<div class=" qty ">1</div>
+						<div class=" item_price "> ${{cartData[key].salePrice | ifEmpty:' (NA)' | limitTo:5  }}</div>
+						<div class=" item_total pink_text ">${{cartData[key].salePrice | ifEmpty:' (NA)' | limitTo:5}}</div>
+					</div>					
+					<div class="cart_table_footer">
+						<div class="float_l">    
+							<a href="javascript:void(0)" ng-click="clearShoppingCart()" class="button black_bt">Clear Shopping Cart</a>
+							<a href="javascript:void(0)" class="button black_bt" ng-click="notAllowed()">Update Shopping Cart</a>
+							<a href="javascript:void(0)" ng-click="notAllowed()" class="button black_bt">Proceed to Checkout</a>
+						</div>
+						<div class="float_r">
+							<span class="float_r a-right total"><strong>Grand Total ${{cartTotal | limitTo:5 }}</strong></span>
+
+						</div>
+					</div>
+				</section>
+				<section class="shoping_cart_table" ng-if="cartData == 'notFound'">
+					<div class="fullwidth_block">
+						<a href="/" class="button black_bt float_l">Continue Shopping</a>
+					</div>
+					<p>Your shopping cart is empty.</p>
+				</section>
+				<div class="clear"></div>
+				<section class="slider" >
+					<div ng-include="'templates/site/partials/cartbased_recommended_product.html'"></div>
+				</section>
+			</div>
+		</section>
+	</section>
+ 
+
+

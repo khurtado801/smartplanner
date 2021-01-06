@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<!-- define angular app -->
+<html ng-app="truckForLoad">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/" />
+    <title>Evolved Educator</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Dosis:300,400,500,700|Unica+One" rel="stylesheet">
+    <link href="public/app/build/css/font-awesome.css" type="text/css" rel="stylesheet" />
+    <link href="public/app/build/css/bootstrap.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="public/app/build/css/select.css">
+    <link rel="stylesheet" href="bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css"
+        type="text/css" />
+
+    <link rel="stylesheet" href="node_modules/ng-dialog/css/ngDialog.css" type="text/css" />
+
+    <link rel="stylesheet" href="node_modules/ng-dialog/css/ngDialog-theme-default.css" type="text/css" />
+
+    <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css'
+        type='text/css' media='all' />
+    <link href="public/app/build/css/jquery.scrollbar.css" type="text/css" rel="stylesheet" />
+
+    <link href="public/app/build/css/style.css" type="text/css" rel="stylesheet" />
+    <link href="public/app/build/css/responsive.css" type="text/css" rel="stylesheet" />
+
+    <link href="public/app/build/css/invoice.css" type="text/css" rel="stylesheet" />
+
+    <!-- Angular Libraries -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="public/app/lib/angular/angular.min.js"></script>
+    <script src="bower_components/tinymce/tinymce.min.js"></script>
+    <script src="bower_components/angular-ui-tinymce/src/tinymce.js"></script>
+    <script src="public/app/build/js/jquery.scrollbar.js"></script>
+
+    <script src="public/app/lib/angular-route/angular-route.min.js"></script>
+    <script src="public/app/lib/angular-resource/angular-resource.min.js"></script>
+    <script src="public/app/lib/angular-cookies/angular-cookies.min.js"></script>
+    <script src="public/app/lib/angular-animate/angular-animate.js" type="text/javascript"></script>
+    <script src="public/app/lib/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="public/app/lib/angular-flash-messages/angular-flash.js"></script>
+    <script src="public/app/lib/angular-utils-pagination/dirPagination.js"></script>
+    <script src="public/app/build/js/angular-filter.min.js"></script>
+
+    <script src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
+    <script src="bower_components/checklist-model/checklist-model.js"></script>
+    <script src="bower_components/angular-credit-cards/release/angular-credit-cards.js"></script>
+    <script src="node_modules/ng-dialog/js/ngDialog.js"></script>
+
+    <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.js'>
+    </script>
+
+    <!-- Angular Material and dependent Libs  -->
+    <script src="public/app/lib/angular-aria/angular-aria.min.js"></script>
+    <script src="public/app/lib/angular-messages/angular-messages.min.js"></script>
+    <script src="public/app/lib/angular-animate/angular-animate.min.js"></script>
+    <script src="public/app/lib/angular-material/angular-material.min.js"></script>
+
+    <!-- Angular Our Custom Modules -->
+    <script src="public/app/js/site/lession/lession.js"></script>
+    <script src="public/app/js/site/lession/controllers/lessionController.js"></script>
+
+    <script src="public/app/js/site/modification/modification.js"></script>
+    <script src="public/app/js/site/modification/controllers/modificationController.js"></script>
+
+    <script src="public/app/js/site/outline/outline.js"></script>
+    <script src="public/app/js/site/outline/controllers/outlineController.js"></script>
+
+    <script src="public/app/js/site/lession/controllers/editorController.js"></script>
+
+    <script src="public/app/js/site/home/home.js"></script>
+    <script src="public/app/js/site/home/controllers/homeController.js"></script>
+
+    <script src="public/app/js/site/page/page.js"></script>
+    <script src="public/app/js/site/page/controllers/pageController.js"></script>
+
+    <script src="public/app/js/site/login/login.js"></script>
+    <script src="public/app/js/site/login/service/loginService.js"></script>
+    <script src="public/app/js/site/login/controllers/loginController.js"></script>
+
+    <script src="public/app/js/site/register/register.js"></script>
+    <script src="public/app/js/site/register/service/registerService.js"></script>
+    <script src="public/app/js/site/register/controllers/registerController.js"></script>
+
+    <script src="public/app/js/site/user/user.js"></script>
+    <script src="public/app/js/site/user/controllers/userController.js"></script>
+
+    <script src="public/app/js/site/site.js"></script>
+    <script src="public/app/js/site/app.js"></script>
+
+    <script src="public/app/js/site/auth/auth.js"></script>
+    <script src="public/app/js/site/auth/service/userService.js"></script>
+    <script src="public/app/js/site/auth/service/authService.js"></script>
+    <script src="public/app/js/site/auth/service/flashService.js"></script>
+    <script src="public/app/js/site/auth/controllers/authController.js"></script>
+
+    <script src="public/app/js/site/payment/payment.js"></script>
+    <script src="public/app/js/site/payment/controllers/paymentController.js"></script>
+
+    <!-- Stripe Payment -->
+    <!-- <script type="text/javascript" src="https://js.stripe.com/v2/"></script> -->
+    <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
+    <script type="text/javascript" src="https://checkout.stripe.com/checkout.js"></script>
+    <script src="public/app/js/site/directive.js"></script>
+    <script src="public/app/build/js/google-js.js"></script>
+    <script src="public/app/build/js/bootstrap.min.js"></script>
+    <script src="public/app/build/js/ui-bootstrap-tpls-2.1.4.js" type="text/javascript"></script>
+
+
+    <!-- ui-select files -->
+    <script src="public/app/build/js/select.js"></script>
+    <script src="public/app/js/site/lessionstart/controllers/lessionstartController.js"></script>
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/1881166.js"></script>
+    <!-- End of HubSpot Embed Code -->
+
+    <!--Start of Zendesk Chat Script-->
+    <script type="text/javascript">
+        window.$zopim || ( function ( d, s ) {
+            var
+                z = $zopim = function ( c ) {
+                    z._.push( c )
+                },
+                $ = z.s = d.createElement( s ),
+                e = d.getElementsByTagName( s )[ 0 ];
+            z.set = function ( o ) {
+                z.set._.push( o )
+            };
+            z._ = [];
+            z.set._ = [];
+            $.async = !0;
+            $.setAttribute( "charset", "utf-8" );
+            $.src = "https://v2.zopim.com/?ZRnremHgwv8E5ubfiiaDlaitLtrhmrdZ";
+            z.t = +new Date;
+            $.
+            type = "text/javascript";
+            e.parentNode.insertBefore( $, e )
+        } )( document, "script" );
+    </script>
+    <!--End of Zendesk Chat Script-->
+
+</head>
+
+<body ng-app="truckForLoadSite">
+    <div class="main_wrapper" ng-controller="homeController">
+        <div ng-view></div>
+    </div>
+</body>
+
+</html>

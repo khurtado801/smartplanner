@@ -1,0 +1,64 @@
+<!-- `Template for selecting grade, subject, and theme, on submit payment check then redirect to outline\create.html -->
+
+<div ng-include="'public/app/templates/site/partials/header.html'"></div>
+<div ng-controller="userController" ng-init="checkForActivePayment()">
+    <section ng-controller="lessionController" ng-init="getAlldata()">
+
+        <div class="container" ng-init="getEditData()">
+            <div ng-include="'public/app/templates/site/partials/message_display.html'"></div>
+            <div class="selection-area">
+                <form name="lession" ng-submit="createlession(lession)" novalidate>
+                    <div class="selection-bar-area">
+                        
+                        <div class="col-xs-12 col-sm-4 col-md-4" >
+                            <div class="grade-sec">
+                                <ui-select name="grade_name" ng-model="grade.selected" search-enabled="false" ng-required="true" id="grade_lession" on-select="getSubjects($item)">
+                                    <ui-select-match placeholder="Grade">{{$select.selected.name}}</ui-select-match>
+                                    <ui-select-choices repeat="grade in grades | filter: $select.search">
+                                        <div ng-bind-html="grade.name | highlight: $select.selected.name"></div>
+                                    </ui-select-choices>
+                                </ui-select>            
+                                <span class="error" ng-show="lession.grade_name.$touched && lession.grade_name.$invalid">Grade is required.</span>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                            <div class="subject-sec">
+                                <ui-select name="subject_name" ng-disabled="!grade.selected" ng-required="true" search-enabled="false" ng-model="subject.selected" id="subject_lession" on-select="getThemes($item)" >
+                                    <ui-select-match placeholder="Subject">{{$select.selected.name}}</ui-select-match>
+                                    <ui-select-choices repeat="subject in subjects | filter: $select.search">
+                                        <div ng-bind-html="subject.name | highlight: $select.selected.name"></div>
+                                    </ui-select-choices>
+                                </ui-select> 
+                            </div>
+                            <span class="error" ng-show="lession.subject_name.$touched && lession.subject_name.$invalid">Subject is required.</span>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                            <div class="theme-sec">
+                                <ui-select on-select="changeThemes($item)" name="theme_name" ng-model="theme.selected" ng-disabled="!subject.selected" search-enabled="false" id="theme_lession" ng-required="true">
+                                    <ui-select-match placeholder="Theme">{{$select.selected.name}}</ui-select-match>
+                                    <ui-select-choices repeat="theme in themes | filter: $select.search">
+                                        <div ng-bind-html="theme.name | highlight: $select.selected.name"></div>
+                                    </ui-select-choices>
+                                </ui-select> 
+                            </div>
+                            <span class="error" ng-show="lession.theme_name.$touched && lession.theme_name.$invalid">Theme is required.</span>
+                        </div>
+
+                    </div>
+                    <div class="unit-title">
+                        <div class="form-group input-value">
+                            <input type="text" class="form-control" required name="unit_title" ng-model="unit_title" placeholder="Unit Title & Teacher Name" >
+                            <span class="error" ng-show="lession.unit_title.$touched && lession.unit_title.$invalid">Unit title is required.</span>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" ng-disabled="lession.$invalid" class="sub_button" ng-click="checkForActivePayment()">Submit</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+<div ng-include="'public/app/templates/site/partials/footer.html'"></div>

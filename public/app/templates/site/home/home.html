@@ -1,0 +1,35 @@
+<div ng-include="'public/app/templates/site/partials/header.html'"></div>
+<section>
+    <div class="container">
+        <div ng-include="'public/app/templates/site/partials/message_display.html'"></div>
+        <div class="landing-container">
+            <div ng-init="getAllEducationalQuotes()">
+                <div class="landing-wrapper">
+                    <div class="logo">
+                        <img src="public/app/build/images/Evolved_Educator_Logo.png" alt="Company Logo" title="Evolved Educator" class="image-responsive center-block" />
+                    </div>
+                    <div class="smart-planner" ng-controller="homeController">
+                        <h1 style="color: #fb6542" id="smartplanner-tm">SmartPlanner<sup>TM</sup></h1>
+                        <div class="educational-quotes">
+                            <p ng-show="educationalquotes.quote_line1" class="quote-line1">
+                                {{educationalquotes.quote_line1}}</p>
+                            <p ng-show="educationalquotes.quote_line2" class="quote-line2">
+                                {{educationalquotes.quote_line2}}</p>
+                            <p class="quote-author">- {{educationalquotes.author}}</p>
+                        </div>
+
+                        <div class="buttons home-greeting-group" ng-controller="authController">
+                            <a ng-if="!checkLogin()" href="#/login" class="sub_button" style="height:47px">Sign In</a>
+
+                            <h1 class="home-greeting-text" ng-if="checkLogin()"><a style="font-size: 4vh; color: #375D97">Welcome to the Community!</a></h1>
+                            <a ng-if="checkLogin()" data-href="javascript:void(0)" ng-controller="lessionController" ng-click="newLesson()" class="start-new-btn">Start New</a>
+                            <!-- <a ng-if="!checkLogin()" href="#/login" class="start-new-btn">Edit Exisiting</a> -->
+                            <a ng-if="checkLogin()" href="#/lession/list_lessons" class="edit-exit-btn">Edit
+                                Exisiting</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+<div ng-include="'public/app/templates/site/partials/footer.html'"></div>

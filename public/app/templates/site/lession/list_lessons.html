@@ -1,0 +1,42 @@
+<div ng-include="'public/app/templates/site/partials/header.html'"></div>
+<div ng-controller="userController" ng-init="checkForActivePayment()">
+    <section ng-controller="lessionController" ng-init="list_lessons()">
+      <div class="container">
+        <div ng-include="'public/app/templates/site/partials/message_display.html'"></div>
+        <div class="selection-area">
+            <div class="form-group">
+                <a class="btn btn-primary" href="javascript:void(0)" ng-click="newLesson()">Add New Lesson</a>
+            </div>
+          <div class="table-menu table table-bordered table-hover table-striped">
+            <div class="table-row">
+              <div class="table-header">
+                <div class="tab-header column-1 col-xs-5 col-sm-6 col-md-9">Lesson Name</div>
+                <div class="tab-header column-2 col-xs-2 col-sm-2 col-md-1">Edit</div>
+                <div class="tab-header column-3 col-xs-2 col-sm-2 col-md-1">Delete</div>
+                <div class="tab-header column-4 col-xs-3 col-sm-2 col-md-1">Download</div>
+
+              </div>
+            </div>
+            <div class="table-row">
+              <div class="table-body">
+
+
+                <div ng-show="lessons.length!=0" class="table-row" dir-paginate="myles in lessons | itemsPerPage: 10">
+                  <div class="table-edit">
+
+                    <div class="tab-content column-1 col-xs-5 col-sm-6 col-md-9">{{myles.unit_title}}</div>
+                    <div class="tab-content column-2 col-xs-2 col-sm-2 col-md-1"><a ng-click="edit(myles.id)" href="javascript:void(0)"><i class="fa fa-pencil-square-o"></i></a></div>
+                    <div class="tab-content column-3 col-xs-2 col-sm-2 col-md-1"><a ng-click="delete(myles.id)" href="javascript:void(0)"><i class="fa fa-trash-o"></i></a></div>
+                    <div class="tab-content column-4 col-xs-3 col-sm-2 col-md-1"><a href="LessonUser/createTempPdfData?lesson_id={{myles.id}}"><i class="fa fa-download"></i></a></div>
+                  </div>
+                </div>
+                <dir-pagination-controls></dir-pagination-controls>
+                <div ng-show="lessons.length==0" class="table-no-data">No lesson created yet.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+</div>
+<div ng-include="'public/app/templates/site/partials/footer.html'"></div>

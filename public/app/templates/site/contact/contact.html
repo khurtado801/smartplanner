@@ -1,0 +1,52 @@
+
+<div ng-include="'public/app/templates/site/partials/header.html'"></div>
+<div ng-include="'public/app/templates/site/partials/header_navigantion.html'"></div>
+<div ng-include="'public/app/templates/site/partials/message_display.html'"></div> 
+<div ng-app="contactPageModule" ng-controller="contactController" class="jumbotron text-center">
+ 
+<section class="outer_container padding_b50">  
+    <!-- <div ng-include="'public/app/templates/site/partials/header_navigantion.html'"></div> -->
+  	<section class="col-2-right-layout">
+  		<section class="container clearfix">
+  			<div class="cat-main">
+				<div class="categories topspace20">				
+					<h2>Contact Us</h2>
+					<div class="col_row contactUs">
+						<div class="col6">
+							<p>Techuz Solutions.</br>
+							9th floor, Dev Path Complex,</br>
+							Behiend Lal Banglow,</br>
+							C G Road,</br>							
+							Gujrat Ahmedabad, 380059</p>
+						</div>
+						<div class="col6">							
+							<p>Techuz Solutions.</br>
+							9th floor, Dev Path Complex,</br>
+							Behiend Lal Banglow,</br>
+							C G Road,</br>							
+							Gujrat Ahmedabad, 380059</p>
+						</div>
+					</div>
+					</br>			
+				</div>
+			</div>
+		</section>
+	</section>
+	<div ng-controller="globalController">
+      <p>{{ 'HEADLINE' | translate }}</p>
+      <p>{{ 'PARAGRAPH' | translate }}</p>
+    
+      <p translate>PASSED_AS_TEXT</p>
+      <p translate="PASSED_AS_ATTRIBUTE"></p>
+      <p translate>{{ 'PASSED_AS_INTERPOLATION' }}</p>
+      <p translate="{{ 'PASSED_AS_INTERPOLATION' }}"></p>
+      <p translate="VARIABLE_REPLACEMENT" translate-values="{ name: 'PascalPrecht' }"></p>
+    
+      <button ng-click="changeLanguage('de')" translate="BUTTON_LANG_DE"></button>
+      <button ng-click="changeLanguage('en')" translate="BUTTON_LANG_EN"></button>
+      </div>
+	
+</section>
+</div> 
+<div ng-include="'public/app/templates/site/partials/footer.html'"></div>
+ 

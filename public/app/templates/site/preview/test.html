@@ -1,0 +1,476 @@
+<style id="customstyle">
+    .ei_dialog {
+        width: 790px;
+        height: 635px;
+        margin: 2% auto auto auto;
+        background-color: white;
+        border: solid 2px #aaaaaa;
+    }
+
+    .toolbar2_pre_auth {
+        height: 48px !important;
+        padding: 2px;
+        text-align: center;
+    }
+
+    .dbody_pre_auth {
+        height: 484px;
+        width: 100%;
+        border-bottom: solid 1px #a9a98c;
+        overflow-y: auto;
+    }
+
+    .d_title {
+        font-size: 10pt;
+        font-weight: bold;
+        color: gray;
+        padding: 8px;
+        border-bottom: 1px solid #a9a98c;
+        height: 16px;
+        line-height: 16px;
+    }
+
+    .d_body_head {
+        height: 33px;
+        background-color: #a9a98c;
+        color: white;
+        padding: 4px 2px 0px 10px;
+    }
+
+    .smallbutton {
+        width: 24px;
+        height: 24px;
+        background-size: 24px 24px;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin-top: 4px;
+    }
+
+    .smallbutton:hover {
+        cursor: pointer;
+    }
+
+    .fr {
+        float: right;
+    }
+
+    .toolbutton2 {
+        padding: 4px;
+        height: 40px;
+        float: left;
+        margin: 0px;
+        cursor: pointer;
+        border-radius: 0px;
+    }
+
+    .toolbutton2:hover {
+        border: 0px solid transparent;
+        background-color: #f4f4f4;
+    }
+
+    .toolimage2 {
+        position: relative;
+        height: 24px;
+        width: 24px;
+        left: 8px;
+    }
+
+    .tooltext2 {
+        margin-top: 4px;
+        font-family: Verdana, Helvetica;
+        font-size: 8px;
+        font-weight: bold;
+        text-align: center;
+        width: 40px;
+    }
+
+    .recordrow {
+        min-height: 85px;
+        align: top;
+        border-bottom: 2px solid #a9a98c;
+        background-color: #f2f2f2;
+    }
+
+    .recordrow[selected="true"] {
+        background-image: none;
+        border-color: transparent;
+    }
+
+    .recordrow:hover {
+        border-color: transparent;
+    }
+
+    .recordrow[cid="0"] {
+        display: none;
+    }
+
+    .recordrow[selected="true"] .smallbutton.delete_icon {
+        display: inline-block;
+        vertical-align: bottom;
+    }
+
+    .smallbutton.delete_icon {
+        display: none;
+    }
+
+    .fieldvalue2 {
+        float: left;
+
+    }
+
+    .fieldvalue {
+        float: left;
+        display: inline-block;
+        list-style-type: none;
+        margin: 2px 2px 2px 2px;
+        padding: 2px 1px 2px 2px;
+    }
+
+    .fieldvlaue.input {
+        padding: 3px;
+    }
+
+    .n_dd {
+        border: 1px solid #CCCCCC;
+        list-style-type: none;
+        margin: 4px 2px 2px 2px;
+        padding: 2px 8px 2px 2px;
+        height: 19px;
+    }
+
+    .ddinput {
+        height: 16px;
+    }
+
+    .lc_col1,
+    .lc_col2,
+    .lc_col3,
+    .lc_col4,
+    .lc_col5 {
+        float: left;
+    }
+
+    .lc_col1 {
+        width: 45px;
+        margin-right: 31px;
+    }
+
+    .lc_col2 {
+        width: 55px;
+        margin-right: 53px;
+    }
+
+    .lc_col3 {
+        width: 90px;
+    }
+
+    .lc_col4 {
+        width: 173px;
+
+    }
+
+    .lc_col5 {
+        width: 161px;
+    }
+
+    .ddinput {
+        height: 15px;
+    }
+
+    .ld_col1 {
+        width: 57px;
+    }
+
+    .ld_col2 {
+        width: 90px;
+    }
+
+    .ld_col3 {
+        width: 100px;
+    }
+
+    .ld_col4 {
+        width: 129px;
+        padding: 3px;
+    }
+
+    .sndata9 {
+        width: 718px;
+    }
+
+    #sf_field {
+        border: 1px solid #CCCCCC;
+        list-style-type: none;
+        margin: 4px 2px 2px 2px;
+        padding: 2px 8px 2px 2px;
+        height: 19px;
+        background-color: transparent;
+    }
+
+    .sectioninfo {
+        color: gray;
+    }
+
+    .n_dd {
+        padding-right: 2px;
+        float: left
+    }
+
+    .ld_col2 {
+        width: 75px;
+    }
+
+    .ddimage {
+        height: 19px;
+    }
+
+    .sndata9 {
+        width: 709px;
+    }
+
+    .fieldvalue input {
+        background-color: transparent;
+    }
+
+    .req_amount {
+        width: 50px;
+        text-align: left;
+        height: 20px;
+        margin-left: 6px;
+        padding-left: 5px;
+        border: 1px solid #CCCCCC;
+    }
+</style>
+
+<div id="dialog">
+    <span subcontrol="dialog" controlinit="layoutId:7302;refreshOn:refresh;cascadeOn:notesave"></span>
+    <div class="ei_dialog">
+        <div class="d_title">
+            <span class="sectioninfo">Expense Pre-Authorization</span>
+            <div class="smallbutton close_dialog_icon fr" style="margin-top:-4px" subcontrol="closebutton"></div>
+        </div>
+        <div class="sectionhead t1">
+            <div class="data" control="navbutton"
+                controlinit="layoutId:7090;keyValue:<JWField @case_id />;type:full;postNavAction:close">
+                <div style="clear:both;width:100%">
+                    <span class="sectioninfo" style="float:right;margin-right:20px;color:#0f3c37">Case ID -
+                        <JWField @case_id /> -
+                        <JWField @case_name /> - DUC#
+                        <JWField @lda_nbr /></span>
+                </div>
+            </div>
+        </div>
+        <div class="d_body_head">
+            <div class="lc_col4"><span>Expense Type</span></div>
+            <div class="lc_col5"><span>Service Provider</span></div>
+            <div class="lc_col1"><span>Requested Amount</span></div>
+            <div class="lc_col2"><span>Date Requested</span></div>
+            <div class="lc_col1"><span>Approved Amount</span></div>
+            <div class="lc_col2"><span>Date Approved</span></div>
+        </div>
+        <div class="dbody_pre_auth">
+            <div class="caserecord" control="recordtable"
+                controlinit="keyName:case_id;multiselect:false;keyValue:<JWField @expense_case_id />;addRowOnTab:false;loadNewOn:addnew;refreshOn:refresh">
+                <JWRepeat>
+                    <div class="recordrow" control="recordrow"
+                        controlinit="<JWCond @is_new_row EQ 1>isLocked:true;</JWCond><JWCond @approved_amount GT 0><JWCond @admin_flag EQ 0>isLocked:true;</JWCond></JWCond>">
+                        <div control="record"
+                            controlinit="recordType:expense_authorization;keyName:expense_authorization_id;localCache:true">
+                            <div>
+                                <input type="hidden" control="textbox"
+                                    controlinit="fieldName:expense_authorization_id;cacheName:expense_authorization_id"
+                                    value="<JWField @expense_authorization_id />" />
+                                <input type="hidden" control="textbox" controlinit="fieldName:case_id"
+                                    value="<JWField @expense_case_id />" />
+                                <input type="hidden" control="textbox"
+                                    controlinit="fieldName:admin_flag;cacheValue:adminFlag"
+                                    value="<JWField @admin_flag />" />
+
+                                <div class="fieldvalue2 dropdown n_dd" control="dropdown"
+                                    controlinit="layoutId:7147;required:true;displayName:Type;listName:event_type_id;cacheName:categoryId;required:true"
+                                    fieldName="expense_type_id" fieldValue="<JWField @expense_type_id />"
+                                    showName="event_type_code">
+                                    <input type="hidden" control="textbox" controlinit="fieldName:pre_auth_code"
+                                        value="Y" />
+                                    <input class="ld_col4" style="border:none;background-color:transparent;"
+                                        subcontrol="dropinput" type="text" style="width:124px"
+                                        value="<JWField @expense_type_code />" />
+                                    <div subcontrol="dropbutton" class="ddimage"></div>
+                                    <div subcontrol="droplist" class="droplist timeuser"></div>
+                                </div>
+                                <div class="fieldvalue2 dropdown n_dd" control="dropdown"
+                                    controlinit="layoutId:7140;displayName:Vendor;listName:staff_id;required:true"
+                                    fieldName="requested_user_id" fieldValue="<JWField @requested_user_id />"
+                                    showName="staff_name">
+                                    <input type="hidden" control="textbox"
+                                        controlinit="fieldName:related_expense_filter;cacheValue:categoryId"
+                                        value="<JWField @expense_type_id />" />
+                                    <input class="ld_col4" style="border:none;background-color:transparent;"
+                                        subcontrol="dropinput" type="text" value="<JWField @requested_sub_name />" />
+                                    <div subcontrol="dropbutton" class="ddimage"></div>
+                                </div>
+                                <p>Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris. Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium. Qui animated corpse, cricket bat max brucks terribilem incessu zomby. The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an Undead zombies. Sicut malus putrid voodoo horror. Nigh tofth eliv ingdead. Cum horribilem walking dead resurgere de crazed sepulcris creaturis, zombie sicut de grave feeding iride et serpens. Pestilentia, shaun ofthe dead scythe animated corpses ipsa screams. Pestilentia est plague.</p>
+                                <div class="fieldvalue2" style="margin-top:4px;background-color:white" control="textbox"
+                                    controlinit="fieldName:requested_amount;mask:fixed,10,2;displayName:Requested Amount;required:true">
+                                    <input class="ddinput ld_col1" style="border:1px solid #c3c3c3;height:15px"
+                                        subcontrol="input" type="text" value="<JWField @requested_amount />"
+                                        placeholder="$0.00" />
+                                </div>
+
+                                <div class="dropdown n_dd" style="float:left" control="datedropdown"
+                                    controlinit="fieldName:requested_date;mask:date;displayName:Date Requested;required:true;">
+                                    <input class="ddinput ld_col2"
+                                        style="height:13px;padding-top:2px;padding-bottom:2px" type="text"
+                                        subcontrol="dropinput" novalidate="novalidate"
+                                        value="<JWField @requested_date />" />
+                                    <div subcontrol="dropbutton" class="ddimage_d"></div>
+                                </div>
+
+                                <JWCond @is_new_row EQ 1>
+                                    <JWCond @admin_flag EQ 1>
+                                        <div class="fieldvalue2" style="border:1px solid #c3c3c3;margin-top:4px;"
+                                            control="textbox"
+                                            controlinit="fieldName:approved_amount;mask:fixed,10,2;displayName:Approved Amount;<JWCond @admin_flag NEQ 1>readOnly:true;</JWCond>">
+                                            <input class="ddinput ld_col1 " style="height:15px" subcontrol="input"
+                                                type="text" value="<JWField @approved_amount />" placeholder="$0.00" />
+                                        </div>
+                                        <div class="dropdown n_dd" control="datedropdown"
+                                            controlinit="fieldName:approval_date;validate:date;mask:date;displayName:Date Approved;<JWCond @admin_flag NEQ 1>readOnly:true;</JWCond>;">
+                                            <input class="ddinput ld_col2" style="height:13px" type="text"
+                                                subcontrol="dropinput"
+                                                controlinit="<JWCond @admin_flag NEQ 1>readOnly:true;</JWCond>"
+                                                novalidate="novalidate" value="<JWField @approval_date />" />
+                                            <div subcontrol="dropbutton" class="ddimage_d"></div>
+                                        </div>
+                                    </JWCond>
+                                    <JWCond @admin_flag NEQ 1>
+                                        <div class="fieldvalue" style="margin-top:4px;padding-top:0px">
+                                            <input class="ddinput ld_col1" style="height:15px" readonly type="text" />
+                                        </div>
+                                        <div class="fieldvalue" style="padding-right:2px">
+                                            <input class="ddinput ld_col3" readonly type="text" />
+                                        </div>
+                                    </JWCond>
+                                </JWCond>
+                                <JWCond @is_new_row NEQ 1>
+                                    <div class="fieldvalue2" style="margin-top:4px;background-color:white"
+                                        control="textbox"
+                                        controlinit="fieldName:approved_amount;mask:fixed,10,2;displayName:Approved Amount;<JWCond @admin_flag NEQ 1>readOnly:true;</JWCond>">
+                                        <input class="ddinput ld_col1" style="border:1px solid #c3c3c3;height:15px"
+                                            subcontrol="input" type="text" value="<JWField @approved_amount />" />
+                                    </div>
+                                    <div class="dropdown n_dd" control="datedropdown"
+                                        controlinit="fieldName:approval_date;validate:date;mask:date;displayName:Date Approved;<JWCond @admin_flag NEQ 1>readOnly:true;</JWCond>;">
+                                        <input class="ddinput ld_col2"
+                                            style="height:13px;padding-top:2px;padding-bottom:2px" type="text"
+                                            subcontrol="dropinput"
+                                            controlinit="<JWCond @admin_flag NEQ 1>readOnly:true;</JWCond>"
+                                            novalidate="novalidate" value="<JWField @approval_date />" />
+                                        <div subcontrol="dropbutton" class="ddimage_d"></div>
+                                    </div>
+                                </JWCond>
+                                <JWCond @is_locked EQ 0>
+                                    <div class="smallbutton delete_icon" style="float:right" control="actionbutton"
+                                        controlinit="action:delete"></div>
+                                </JWCond>
+                                <div style="clear:both"></div>
+                            </div>
+                            <JWCond @expense_authorization_id NEQ null>
+                                <div control="area" style="margin:4px 0px 0px 4px"
+                                    controlinit="refreshOn:init,refdoc;layoutId:7346;includeData:true">
+                                    <input type="hidden" control="basicdata"
+                                        controlinit="fieldName:expense_authorization_id"
+                                        value="<JWField @expense_authorization_id />" />
+                                </div>
+                            </JWCond>
+                            <div control="record" controlinit="recordType:note;keyName:note_id;"
+                                style="display:inline-block">
+                                <input type="hidden" control="textbox" controlinit="fieldName:note_id;cacheName:noteId"
+                                    value="" />
+                                <!-- MAKE SURE THAT SEQUENCER_ID VALUE MATCHES THE VALLUE FOR THE EXPENSE_AUTHORIZATION SEQUENCER_ID -->
+                                <input type="hidden" control="textbox"
+                                    controlinit="fieldName:sequencer_id;alwaysSendWithSave:true;defaultValue:112"
+                                    value="112" />
+                                <input type="hidden" control="textbox"
+                                    controlinit="fieldName:expense_authorization_id;cacheName:rowId"
+                                    value="<JWField @expense_authorization_id />" />
+                                <input type="hidden" control="textbox" controlinit="fieldName:row_id;cacheValue:rowId"
+                                    value="<JWField @expense_authorization_id />" />
+                                <JWCond @admin_flag EQ 1>
+                                    <input type="hidden" control="textbox"
+                                        controlinit="fieldName:organization_id;alwaysSendWithSave:true;defaultValue:<JWField @attorney_org_id />"
+                                        value="<JWField @attorney_org_id />" />
+                                </JWCond>
+                                <div>
+                                    <span
+                                        style="color:gray;width:515px;float:left;margin-left:4px;margin-top:4px;">Reason
+                                        for Request - Be specific about why the service requested is needed in this
+                                        case.</span>
+                                    <div class="f_field">
+                                        <input id="sf_field" class="sndata9" type="text" control="textbox"
+                                            controlinit="fieldName:note_value;required:true" value="" />
+                                    </div>
+                                    <JWCond @admin_flag EQ 1>
+                                        <div control="record"
+                                            controlinit="recordType:sub_2_note;keyName:sub_2_note_id;">
+                                            <input type="hidden" control="textbox"
+                                                controlinit="fieldName:sub_2_note_id;" value="" />
+                                            <input type="hidden" control="textbox"
+                                                controlinit="fieldName:note_id;cacheValue:noteId" value="" />
+                                            <input type="hidden" control="textbox"
+                                                controlinit="fieldName:sub_id;alwaysSendWithSave:true;defaultValue:<JWField @attorney_sub_id />"
+                                                value="<JWField @attorney_sub_id />" />
+                                            <input type="hidden" control="textbox"
+                                                controlinit="fieldName:active_flag;alwaysSendWithSave:true;"
+                                                value="Y" />
+                                        </div>
+                                    </JWCond>
+                                </div>
+                            </div>
+                            <div>
+                                <span control="area"
+                                    controlinit="refreshOn:init,notesave,refreshnotes;layoutId:7350;includeData:true;cascadeOn:refreshnotes,notesave">
+                                    <input type="hidden" control="textbox"
+                                        controlinit="fieldName:case_id;defaultValue:<JWField @case_id />"
+                                        value="<JWField @expense_case_id />" />
+                                    <input type="hidden" control="textbox"
+                                        controlinit="fieldName:table_name;defaultValue:expense_authorization"
+                                        value="expense_authorization" />
+                                    <input type="hidden" control="textbox"
+                                        controlinit="fieldName:row_id;cacheValue:expense_authorization_id"
+                                        value="<JWField @expense_authorization_id />" />
+                                    <input type="hidden" control="textbox"
+                                        controlinit="fieldName:custom_refresh_msg;defaultValue:npr<JWField @case_id />"
+                                        value="npr<JWField @case_id />" />
+                                    <input type="hidden" control="textbox"
+                                        controlinit="fieldName:key_cache_value;defaultValue:expense_authorization_id"
+                                        value="expense_authorization_id" />
+                                </span>
+                            </div>
+                            <div style="clear:both;"></div>
+                        </div>
+                    </div>
+                </JWRepeat>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div class="toolbar2_pre_auth">
+            <div class="toolbutton2" style="float:right;margin-right:10px;" control="actionbutton"
+                controlinit="action:exitsave,close;">
+                <div class="toolimage2 save_exit_icon"></div>
+                <div class="tooltext2">Save/Exit</div>
+            </div>
+            <div class="toolbutton2" style="margin-left:4px;float:right;" control="actionbutton"
+                controlinit="action:save,refresh">
+                <input type="hidden" control="textbox" controlinit="fieldName:case_id" value="<JWField @case_id />" />
+                <div class="toolimage2 save_icon"></div>
+                <div class="tooltext2">Save</div>
+            </div>
+            <div class="toolbutton2" style="margin-left:4px;float:left;" control="actionbutton"
+                controlinit="action:addnew;">
+                <div class="toolimage2 new_icon"></div>
+                <div class="tooltext2">New</div>
+            </div>
+        </div>
+    </div>
+</div>

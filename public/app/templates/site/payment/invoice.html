@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>A simple, clean, and responsive HTML invoice template</title>    
+    </head>
+
+    <body>
+        <div ng-include="'public/app/templates/site/partials/header.html'"></div>
+        <div class="container">
+            <div class="invoice-box">
+                <table cellpadding="0" cellspacing="0">
+                    <tr class="top">
+                        <td colspan="2">
+                            <table>
+                                <tr>
+                                    <td class="title"> SMART PLANNER
+                                        <!--<img src="http://nextstepwebs.com/images/logo.png" style="width:100%; max-width:300px;">-->
+                                    </td>
+
+                                    <td>
+                                        Name : 123<br>
+                                        Created: January 1, 2015<br>
+                                        Due: February 1, 2015
+                                        
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr class="heading">
+                        <td>
+                            Plan
+                        </td>
+
+                        <td>
+                            Price
+                        </td>
+                    </tr>
+
+                    <tr class="item last">
+                        <td>
+                            Domain name (1 year)
+                        </td>
+
+                        <td>
+                            $10.00
+                        </td>
+                    </tr>
+
+                    <tr class="total">
+                        <td></td>
+
+                        <td>
+                            Total: $385.00
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div ng-include="'public/app/templates/site/partials/footer.html'"></div>
+    </body>
+</html>

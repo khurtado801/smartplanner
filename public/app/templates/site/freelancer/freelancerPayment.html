@@ -1,0 +1,59 @@
+<div ng-include="'public/app/templates/site/partials/header.html'"></div>
+<div ng-include="'public/app/templates/site/partials/header_navigantion.html'"></div>
+<div ng-include="'public/app/templates/site/partials/message_display.html'"></div>
+<section class="wrapper" ng-controller="freelancerController" ng-init="getPaymentData()" ng-cloak  class="md-inline-form" layout="column">
+	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">		
+		<section class="col-2-right-layout ng-scope">
+			<section class="container clearfix">
+				<div class="panel-heading">
+					<h3 class="panel-title">Payment (Freelancer)</h3>
+				</div>
+				<form name="paymentForm" id="paymentForm" class="form-horizontal" 
+				ng-submit="paymentForm.$valid && paymentForm(user)" novalidate>
+	
+					<div layout-gt-sm="row">
+					<md-input-container class="md-block" flex-gt-sm>
+						<label>Cradit Card Type</label>
+						<md-select ng-model="user.cc_type" name="cc_type">
+							<md-option ng-repeat="card in cards" value="{{card}}">
+								{{card}}
+							</md-option>
+						</md-select>
+					</md-input-container>
+					</div>
+					<div layout-gt-sm="row">
+						<md-input-container class="md-block" flex-gt-sm>
+							<label>Card Number</label>
+							<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Card Number</md-tooltip>
+							<input ng-model="user.cc_name" name="cc_name" required>	
+						</md-input-container>
+					</div>
+
+					<div layout-gt-sm="row">
+						<md-input-container class="md-block" flex-gt-sm>
+							<label>Card Holder Name</label>
+							<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >Card Holder Name</md-tooltip>
+							<input ng-model="user.cc_name" name="cc_name" required>		
+						</md-input-container>
+					</div>
+
+					<div layout-gt-sm="row">
+						<md-input-container class="md-block" flex-gt-sm>
+							<label>CVV Number</label>
+							<md-tooltip md-delay="tooltip.delay" md-direction="{{tooltip.direction}}" >CVV Number Name</md-tooltip>
+							<input ng-model="user.cc_cvv" name="cc_cvv" required>		
+						</md-input-container>
+					</div>
+
+					<div class="form-group">
+						<a class="btn btn-default" href="#freelancer/profile/dashboard">Cancel</a>
+						<md-button ng-disabled="paymentForm.$invalid" class="md-primary" type="submit" class="btn btn-primary">Submit</md-button>
+					</div>
+				</form>
+	        </div>
+	        </section>
+        </section>
+	</div>
+</section>
+<div ng-include="'public/app/templates/site/partials/footer.html'"></div>
+
