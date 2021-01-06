@@ -7,57 +7,6 @@
         <button class="btn btn-primary verify-reg-btn" ng-controller="loginController" type="button" ng-click="popupClose()">OK</button>
     </div>
 </script>
-<!-- <section>
-    <div class="container" ng-controller="authController" ng-init="getFormToken()">
-        <div ng-include="'public/app/templates/site/partials/message_display.html'"></div>
-        <div class="logo">
-            <img src="public/app/build/images/Evolved_Educator_Logo.png" alt="Company Logo" title="Evolved Educator"
-                class="img-responsive center-block" style="max-width: 40%" />
-        </div>
-        <div class="container_login">
-            <div class="register-form" ng-controller="loginController" ng-init="checkPopup()">
-                <h2>Sign In</h2>
-                <form name="loginForm" ng-submit="loginForm.$valid &&login(form)" novalidate>
-                    <div class="register-form-inner">
-                        <div class="form-group">
-                            <input type="email" name="email" ng-model="email"
-                                ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" class="form-control"
-                                placeholder="Email" ng-maxlength="100" required />
-                            <span class="error" ng-show="loginForm.email.$touched && loginForm.email.$invalid">
-                                <span ng-show="loginForm.email.$error.required">Email is required.</span>
-                                <span ng-show="loginForm.email.$error.pattern">Invalid email address.</span>
-                                <span ng-show="loginForm.email.$error.maxlength">Email length is not valid.</span>
-                            </span>
-                        </div>
-                        <div class="form-group">
-                            <input type="password" name="password" minlength="6" md-maxlength="30" required
-                                class="form-control" id="inputPassword" placeholder="Password" ng-model="password">
-                            <span class="error" ng-show="loginForm.password.$touched && loginForm.password.$invalid">
-                                <span ng-show="loginForm.password.$error.required">Password is required.</span>
-                                <span class="error" ng-show="loginForm.password.$error.minlength">Password length must
-                                    be minimum 6
-                                    characters.</span>
-                            </span>
-                        </div>
-                        <div class="forgot_password">
-                            <a href="#/forgotPassword">Forgot Username Forgot Password</a>
-                        </div>
-                        <div class="submit_panel">
-                            <div class="form-group">
-                                <button type="submit" ng-disabled="loginForm.$invalid" class="sub_button">Sign
-                                    In</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="haveAccount_panel">
-                        <p>New to Evolved Educator?</p>
-                        <a href="#/register" style="color: #fb6542">Sign Up</a>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</section> -->
 
 <section>
     <div class="container" ng-controller="authController" ng-init="getFormToken()">
