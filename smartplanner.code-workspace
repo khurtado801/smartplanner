@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"sqltools.connections": [],
+		"cSpell.words": [
+			"container",
+			"forgot",
+			"password"
+		]
+	}
+}

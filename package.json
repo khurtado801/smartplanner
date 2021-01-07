@@ -26,7 +26,7 @@
     "angular-messages": "^1.7.2",
     "angularjs-stripe-elements": "^1.0.1",
     "checklist-model": "^1.0.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.1",
     "jquery-mousewheel": "^3.1.13",
     "malihu-custom-scrollbar-plugin": "^3.1.5",
     "ng-dialog": "^1.4.0",
