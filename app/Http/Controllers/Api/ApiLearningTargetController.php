@@ -22,6 +22,7 @@ use App\Lesson;
 use App\LessonUser;
 use App\MapLessonUser;
 use App\LearningTargets;
+use App\LessonSequence;
 use Tymon\JWTAuth\JWTAuth;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 use Tymon\JWTAuth\Exceptions\TokenInvalidException;
@@ -159,8 +160,9 @@ class ApiLearningTargetController extends Controller {
                 $content_essential_questions = $editor_content["essential_questions"] ? '<h3>Essential Questions</h3>'.$editor_content["essential_questions"] : $editor_content["essential_questions"];
                 $content_core_ideas = $editor_content["core_ideas"] ? '<h3>Core Ideas</h3>'.$editor_content["core_ideas"] : $editor_content["core_ideas"];
                 $content_vocabulary = $editor_content["vocabulary"] ? '<h3>Vocabulary</h3>'.$editor_content["vocabulary"] : $editor_content["vocabulary"];
-                $content_lesson_sequence = $editor_content["lesson_sequence"] ? '<h3>Lesson sequence</h3>'.$editor_content["lesson_sequence"] : $editor_content["lesson_sequence"];
-                $merge_content = $content_summary.$content_standards.$content_essential_questions.$content_core_ideas.$content_vocabulary.$content_lesson_sequence;
+                // $content_lesson_sequence = $editor_content["lesson_sequence"] ? '<h3>Lesson sequence</h3>'.$editor_content["lesson_sequence"] : $editor_content["lesson_sequence"];
+                // $merge_content = $content_summary.$content_standards.$content_essential_questions.$content_core_ideas.$content_vocabulary.$content_lesson_sequence;
+                $merge_content = $content_summary.$content_standards.$content_essential_questions.$content_core_ideas.$content_vocabulary;
                 $content["content"] = $merge_content;
             }
             

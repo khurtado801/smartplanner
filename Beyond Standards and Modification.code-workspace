@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"sqltools.connections": [
+			{
+				"askForPassword": false,
+				"connectionTimeout": 30,
+				"database": "smartplanner",
+				"dialect": "MySQL",
+				"name": "MySQL",
+				"password": "Opt1pl3x#",
+				"port": 3306,
+				"server": "127.0.0.1",
+				"username": "root"
+			}
+		]
+	}
+}

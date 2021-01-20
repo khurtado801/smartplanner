@@ -6,4 +6,3 @@ outlineModule.config(function($routeProvider) {
 		})
 			
 });
-

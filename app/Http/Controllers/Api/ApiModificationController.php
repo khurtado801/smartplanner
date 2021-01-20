@@ -23,6 +23,7 @@ class ApiModificationController extends Controller {
         $this->req = $request;
         $this->res = $responseFactory;
         $this->wemodification = $modification;
+        $this->modification = $modification;
     }
 
     /**
